@@ -137,36 +137,36 @@ const heroPreviewNav = [
 
 const capabilityCards = [
   {
-    title: 'HR',
-    copy: 'Employee records, onboarding and policy visibility in one controlled place.',
+    title: 'HR and staff operations',
+    copy: 'Staff directory, leave, documents, onboarding and timesheets in one controlled operational layer.',
   },
   {
-    title: 'CRM',
-    copy: 'Leads, clients and ownership in one commercial view management can trust.',
+    title: 'CRM and client work',
+    copy: 'Clients, notes, tasks, pipeline, outreach and invoices in one commercial workspace.',
   },
   {
-    title: 'Staff management',
-    copy: 'Clearer roles, responsibilities and day-to-day accountability as the team grows.',
+    title: 'Roles and permissions',
+    copy: 'Manager, admin and owner controls that keep higher-privilege workflows in the right hands.',
   },
   {
-    title: 'Documents and policies',
-    copy: 'A controlled home for documents, acknowledgements and policies.',
+    title: 'Reporting and exports',
+    copy: 'Summary reporting plus CSV exports across staff, leave, clients, invoices and timesheets.',
   },
   {
-    title: 'Leave and timesheets',
-    copy: 'Time away, timesheets and approvals handled before they become payroll friction.',
+    title: 'Billing and subscriptions',
+    copy: 'Trial handling, live plan changes, billing status logic and subscription control without admin sprawl.',
   },
   {
-    title: 'Billing and reporting',
-    copy: 'Reporting and billing visibility closer to the work that drives the numbers.',
+    title: 'Tenant and super admin control',
+    copy: 'Multi-tenant architecture, workspace administration, demo tenants and platform-level oversight.',
   },
 ]
 
 const trustSignals = [
-  'Role-aware platform architecture',
-  'Policy and document control',
-  'Operational reporting visibility',
-  'Built for UK business workflows',
+  'Multi-tenant workspace architecture',
+  'Role-based internal permissions',
+  'Billing, reporting and exports in one system',
+  'Read-only live demo available',
 ]
 
 const pricingPlans = [
@@ -175,8 +175,8 @@ const pricingPlans = [
     launch: '£9/mo',
     normal: '£19/mo',
     badge: 'Launch offer',
-    fit: 'Best for smaller teams replacing scattered admin',
-    description: 'A cleaner operating layer for smaller teams that need structure without rollout drag.',
+    fit: 'Best for smaller teams replacing scattered internal admin',
+    description: 'A clean internal workspace for businesses getting HR, client work and operational records under control.',
     features: ['HR essentials', 'CRM foundation', 'documents and policies', 'leave tracking', '14-day free trial'],
   },
   {
@@ -184,8 +184,8 @@ const pricingPlans = [
     launch: '£24/mo',
     normal: '£49/mo',
     badge: 'Most popular',
-    fit: 'Best for growing businesses that need proper structure',
-    description: 'The strongest balance of control, manager visibility and reporting for most businesses.',
+    fit: 'Best for growing businesses that need tighter operational structure',
+    description: 'The strongest balance of manager visibility, workflow control, reporting and day-to-day structure.',
     features: ['Everything in Starter', 'staff management', 'timesheets', 'advanced workflows', 'enhanced reporting'],
   },
   {
@@ -193,8 +193,8 @@ const pricingPlans = [
     launch: '£59/mo',
     normal: '£99/mo',
     badge: 'Best for scale',
-    fit: 'Best for leadership teams that want deeper control',
-    description: 'Deeper control, stronger reporting and broader oversight for leadership teams.',
+    fit: 'Best for leadership teams that want deeper control and oversight',
+    description: 'Broader billing, reporting, permissions and workspace control for more mature internal operations.',
     features: ['Everything in Growth', 'billing visibility', 'deeper reporting', 'priority support', 'admin-level oversight'],
   },
 ]
@@ -687,14 +687,14 @@ function LandingPage() {
           <div className="hero-copy">
             <div className="eyebrow hero-sequence hero-sequence-1">14-day free trial included</div>
             <h1 className="hero-sequence hero-sequence-2">
-              Bring operations
-              <span className="headline-shift"> under control.</span>
+              Run internal operations
+              <span className="headline-shift"> in one place.</span>
             </h1>
             <p className="hero-body hero-sequence hero-sequence-3">
-              HR, CRM, staff, documents, leave, timesheets, billing and reporting in one disciplined system.
+              DH Workplace helps businesses run staff operations, client work, billing and reporting from one clean internal workspace.
             </p>
             <div className="hero-proofline hero-sequence hero-sequence-4">
-              <span>Built for internal company operations</span>
+              <span>Built for the business and its internal team</span>
             </div>
             <div className="hero-actions hero-sequence hero-sequence-5">
               <a href={APP_URL} className="button primary">
@@ -722,9 +722,9 @@ function LandingPage() {
       <Reveal as="section" className="section" delay={20}>
         <div className="wrap section-header">
           <div className="eyebrow">Core platform</div>
-          <h2>The core systems a growing business needs in one place.</h2>
+          <h2>The systems behind staff, client work and billing in one workspace.</h2>
           <p>
-            Fewer tools, less admin drift, clearer ownership.
+            Built for business owners, managers and internal teams, not for end customers.
           </p>
         </div>
         <div className="wrap capability-grid">
@@ -741,9 +741,9 @@ function LandingPage() {
         <div className="wrap trust-grid">
           <div className="trust-copy">
             <div className="eyebrow">Trust by design</div>
-            <h2>Structured to feel credible from day one.</h2>
+            <h2>Structured for internal control from day one.</h2>
             <p>
-              Built for businesses that need tighter internal control as they scale.
+              Multi-tenant architecture, permissions, billing logic and reporting built into the platform, not bolted on around it.
             </p>
             <div className="trust-list">
               {trustSignals.map((item) => (
@@ -756,16 +756,16 @@ function LandingPage() {
           </div>
           <div className="trust-panel">
             <div className="trust-metric">
-              <span>Operational confidence</span>
-              <strong>One platform</strong>
+              <span>Platform model</span>
+              <strong>Multi-tenant</strong>
             </div>
             <div className="trust-metric">
-              <span>Commercial clarity</span>
-              <strong>Live reporting</strong>
+              <span>Internal control</span>
+              <strong>Roles + permissions</strong>
             </div>
             <div className="trust-metric">
-              <span>Deployment model</span>
-              <strong>14-day trial</strong>
+              <span>Product proof</span>
+              <strong>Live demo</strong>
             </div>
           </div>
         </div>
@@ -775,7 +775,7 @@ function LandingPage() {
         <div className="wrap final-cta-shell">
           <div>
             <div className="eyebrow">Ready to choose</div>
-            <h2>Pricing is where the decision gets simple.</h2>
+            <h2>See the platform, choose the plan, then roll it out properly.</h2>
           </div>
           <div className="cta-stack">
             <Link to="/pricing" className="button primary">View pricing</Link>
@@ -800,11 +800,11 @@ function PricingPage() {
           <div className="pricing-lead">
             <div className="eyebrow">Pricing</div>
             <h1>Choose the level of structure your business needs now.</h1>
-            <p>Start with the right level, trial it properly, and upgrade only when the business needs more.</p>
+            <p>Start with the right operational layer for your team, trial it properly, and move up as the business needs more control.</p>
           </div>
           <div className="pricing-callout">
             <strong>Growth is the best fit for most businesses.</strong>
-            <span>It gives you the clearest balance of control, visibility and reporting without making rollout feel heavy.</span>
+            <span>It gives most teams the right balance of HR, CRM, reporting and workflow control without making rollout feel heavy.</span>
           </div>
         </div>
       </Reveal>
@@ -825,7 +825,7 @@ function PricingPage() {
               </div>
               <div className="pricing-subline">Launch pricing available now</div>
               <p>{plan.description}</p>
-              <div className="plan-note">14-day free trial included. Start quickly, validate fit, then scale with confidence.</div>
+              <div className="plan-note">14-day free trial included. Start with the right operational setup, validate fit, then scale with confidence.</div>
               <div className="feature-list">
                 {plan.features.map((feature) => (
                   <div key={feature} className="feature-item">
@@ -845,7 +845,7 @@ function PricingPage() {
           ))}
         </div>
         <div className="pricing-footer-note">
-          Need a walkthrough before deciding? Book a demo and we’ll show exactly where DH Workplace replaces admin drag in your business.
+          Need a walkthrough before deciding? Book a demo and we’ll show exactly how DH Workplace handles staff operations, client work, billing and reporting inside one internal workspace.
         </div>
       </Reveal>
     </main>
@@ -863,12 +863,12 @@ function FaqPage() {
           <div className="eyebrow">FAQ</div>
             <h1>Questions answered clearly before you commit.</h1>
             <p>
-              Straight answers on fit, rollout and pricing so the decision feels commercial, not confusing.
+              Straight answers on fit, rollout and pricing so businesses can evaluate DH Workplace as an internal operations platform, not a client-facing portal.
             </p>
           </div>
           <div className="faq-side-note">
             <strong>Still deciding?</strong>
-            <span>Start the trial if you want speed. Book a demo if you want certainty.</span>
+            <span>Use the live demo if you want product proof. Book a demo if you want a guided commercial walkthrough.</span>
           </div>
         </div>
       </Reveal>
