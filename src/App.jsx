@@ -40,12 +40,6 @@ const trustSignals = [
   'Built for UK business workflows',
 ]
 
-const systemColumns = [
-  { title: 'People', items: ['HR records', 'onboarding', 'leave', 'timesheets'] },
-  { title: 'Operations', items: ['tasks', 'documents', 'policies', 'staff management'] },
-  { title: 'Commercial', items: ['CRM', 'clients', 'billing', 'reporting'] },
-]
-
 const pricingPlans = [
   {
     name: 'Starter',
@@ -230,9 +224,7 @@ function LandingPage() {
               <a href="https://workplace.dhwebsiteservices.co.uk" className="button primary">
                 Start free trial
               </a>
-              <a href="mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo" className="button secondary">
-                Book a demo
-              </a>
+              <Link to="/pricing" className="button secondary">View pricing</Link>
             </div>
             <div className="stat-row">
               {productStats.map((item) => (
@@ -263,7 +255,6 @@ function LandingPage() {
                 <div className="topbar-actions">
                   <span className="topbar-tab">DH Workplace</span>
                   <span className="topbar-tab muted">Overview</span>
-                  <span className="topbar-tab muted">DH Website Services</span>
                 </div>
               </div>
 
@@ -290,25 +281,14 @@ function LandingPage() {
                       <span className="rail-item">Staff Directory</span>
                       <span className="rail-item">Leave</span>
                       <span className="rail-item">Documents</span>
-                      <span className="rail-item">Policies</span>
                       <span className="rail-item">Timesheets</span>
-                      <span className="rail-item">Onboarding</span>
                     </div>
                   </div>
                   <div className="rail-group">
                     <div className="rail-heading">Clients</div>
                     <div className="rail-stack">
                       <span className="rail-item">Clients</span>
-                      <span className="rail-item">Tasks</span>
                       <span className="rail-item">Pipeline</span>
-                      <span className="rail-item">Outreach</span>
-                    </div>
-                  </div>
-                  <div className="rail-account">
-                    <span className="rail-avatar">A</span>
-                    <div>
-                      <strong>admin@dhworkplace.co.uk</strong>
-                      <span>Sign out</span>
                     </div>
                   </div>
                 </aside>
@@ -354,8 +334,7 @@ function LandingPage() {
                         {[
                           ['Add team member', 'Invite a new person and assign their role'],
                           ['Add client', 'Create a client account and assign ownership'],
-                          ['Create task', 'Capture operational work and due dates'],
-                          ['Log leave request', 'Submit or review upcoming time away'],
+                          ['Approve leave', 'Review time away with clear manager visibility'],
                         ].map(([title, copy]) => (
                           <div key={title} className="action-item">
                             <strong>{title}</strong>
@@ -377,8 +356,7 @@ function LandingPage() {
           <div className="eyebrow">Core platform</div>
           <h2>Built around the work that actually slows businesses down.</h2>
           <p>
-            Replace disconnected admin with one cleaner operating layer for your team,
-            your managers and your leadership view.
+            Replace disconnected admin with one cleaner operating layer for your team and your managers.
           </p>
         </div>
         <div className="wrap capability-grid">
@@ -388,31 +366,6 @@ function LandingPage() {
               <p>{card.copy}</p>
             </article>
           ))}
-        </div>
-      </section>
-
-      <section className="section architecture-section">
-        <div className="wrap architecture-shell">
-          <div className="section-header compact">
-            <div className="eyebrow">How It Fits</div>
-            <h2>One platform across people, operations and commercial control.</h2>
-            <p>
-              The value becomes obvious when the structure is obvious: people,
-              operations and commercial control inside one connected system.
-            </p>
-          </div>
-          <div className="system-grid">
-            {systemColumns.map((column) => (
-              <article key={column.title} className="system-card">
-                <h3>{column.title}</h3>
-                <div className="system-items">
-                  {column.items.map((item) => (
-                    <span key={item}>{item}</span>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -454,13 +407,11 @@ function LandingPage() {
       <section className="section final-cta">
         <div className="wrap final-cta-shell">
           <div>
-            <div className="eyebrow">Start properly</div>
-            <h2>Start the trial and see how much cleaner the business can run.</h2>
+            <div className="eyebrow">Ready to Choose?</div>
+            <h2>Go to pricing, choose the right plan, and start the trial.</h2>
           </div>
           <div className="cta-stack">
-            <a href="https://workplace.dhwebsiteservices.co.uk" className="button primary">
-              Start free trial
-            </a>
+            <Link to="/pricing" className="button primary">View pricing</Link>
             <a href="mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo" className="button secondary">
               Book a demo
             </a>
@@ -475,20 +426,10 @@ function PricingPage() {
   return (
     <main className="page-shell">
       <section className="page-hero">
-        <div className="wrap">
-          <div className="eyebrow">Pricing</div>
-          <h1>Simple pricing for businesses ready to operate properly.</h1>
-          <p>
-            Launch pricing is live now. Start on the right plan, try it for 14 days, and upgrade as the business grows.
-          </p>
-        </div>
-      </section>
-
-      <section className="section">
         <div className="wrap pricing-intro">
           <div className="pricing-lead">
             <div className="eyebrow">Pricing</div>
-            <h2>Choose the level of structure your business needs now.</h2>
+            <h1>Choose the level of structure your business needs now.</h1>
             <p>Every plan starts with a 14-day free trial. Launch pricing is live now, so the easiest time to switch is before more process debt builds up.</p>
           </div>
           <div className="pricing-callout">
@@ -496,6 +437,9 @@ function PricingPage() {
             <span>It gives you the strongest balance of operational control, team visibility and reporting without overcomplicating rollout.</span>
           </div>
         </div>
+      </section>
+
+      <section className="section pricing-section">
         <div className="wrap pricing-grid">
           {pricingPlans.map((plan) => (
             <article
