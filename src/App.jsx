@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 const productStats = [
   { value: '14 days', label: 'free trial' },
   { value: '6 core systems', label: 'under one login and one structure' },
-  { value: '< 1 hour', label: 'to get your team oriented' },
 ]
 
 const capabilityCards = [
@@ -34,24 +33,6 @@ const capabilityCards = [
   },
 ]
 
-const platformPillars = [
-  {
-    kicker: 'Control',
-    title: 'Bring operational sprawl back into one command surface.',
-    copy: 'Built for businesses that have outgrown spreadsheets, fragmented subscriptions and inconsistent internal process.',
-  },
-  {
-    kicker: 'Clarity',
-    title: 'Make work visible across teams, not trapped inside individuals.',
-    copy: 'Replace guesswork with structure so leadership can see what is happening without chasing updates.',
-  },
-  {
-    kicker: 'Scale',
-    title: 'Install better operational discipline before growth makes it expensive.',
-    copy: 'This is not just software adoption. It is operational maturity in a format your team can actually use.',
-  },
-]
-
 const trustSignals = [
   'Role-aware platform architecture',
   'Policy and document control',
@@ -59,50 +40,10 @@ const trustSignals = [
   'Built for UK business workflows',
 ]
 
-const proofStats = [
-  { value: 'One system', label: 'for people, process and reporting' },
-  { value: 'Launch pricing', label: 'designed to make switching easier' },
-  { value: 'Cleaner oversight', label: 'for managers and leadership' },
-  { value: 'UK-ready', label: 'for real local business operations' },
-]
-
 const systemColumns = [
   { title: 'People', items: ['HR records', 'onboarding', 'leave', 'timesheets'] },
   { title: 'Operations', items: ['tasks', 'documents', 'policies', 'staff management'] },
   { title: 'Commercial', items: ['CRM', 'clients', 'billing', 'reporting'] },
-]
-
-const comparisons = [
-  {
-    title: 'Spreadsheets and inboxes',
-    before: 'Scattered ownership, missing visibility and constant follow-up.',
-    after: 'One clear operating layer with accountable workflows and live status.',
-  },
-  {
-    title: 'Generic admin tools',
-    before: 'Lots of features, little operational discipline.',
-    after: 'A platform shaped around how a real business is actually run.',
-  },
-  {
-    title: 'Patchwork subscriptions',
-    before: 'Too many systems, too much duplicated effort.',
-    after: 'Sharper structure with fewer moving parts to manage.',
-  },
-]
-
-const interfaceHighlights = [
-  {
-    title: 'Manager visibility',
-    copy: 'See team status, approvals, tasks and workspace readiness without spending the day chasing updates.',
-  },
-  {
-    title: 'Structured actions',
-    copy: 'The product is shaped around the next operational move so common admin work feels controlled, not improvised.',
-  },
-  {
-    title: 'Commercial awareness',
-    copy: 'CRM, billing and reporting stay close to operations, giving leadership a cleaner commercial picture.',
-  },
 ]
 
 const pricingPlans = [
@@ -284,7 +225,6 @@ function LandingPage() {
             <div className="hero-proofline">
               <span>Built for internal company operations</span>
               <span>14-day free trial</span>
-              <span>by DH Website Services</span>
             </div>
             <div className="hero-actions">
               <a href="https://workplace.dhwebsiteservices.co.uk" className="button primary">
@@ -396,9 +336,8 @@ function LandingPage() {
                   <div className="workspace-stats">
                     {[
                       ['1', 'Team members', 'blue'],
-                      ['0', 'Active clients', 'green'],
-                      ['0', 'Open tasks', 'amber'],
-                      ['0', 'Pending leave', 'red'],
+                      ['41', 'Active clients', 'green'],
+                      ['7', 'Pending approvals', 'amber'],
                     ].map(([value, label, tone]) => (
                       <div key={label} className="workspace-stat">
                         <strong className={`tone-${tone}`}>{value}</strong>
@@ -410,7 +349,7 @@ function LandingPage() {
                   <div className="workspace-panels">
                     <section className="workspace-panel large">
                       <h3>Quick actions</h3>
-                      <p>The most common workspace moves</p>
+                      <p>The next operational moves, surfaced clearly.</p>
                       <div className="action-list">
                         {[
                           ['Add team member', 'Invite a new person and assign their role'],
@@ -425,125 +364,9 @@ function LandingPage() {
                         ))}
                       </div>
                     </section>
-
-                    <section className="workspace-panel short">
-                      <h3>Workspace summary</h3>
-                      <p>Commercial and operational readiness</p>
-                      <div className="summary-grid">
-                        <div className="summary-item">
-                          <span>Plan</span>
-                          <strong>Business</strong>
-                        </div>
-                        <div className="summary-item">
-                          <span>Readiness</span>
-                          <strong>Trial</strong>
-                        </div>
-                        <div className="summary-item">
-                          <span>Focus</span>
-                          <strong>Internal operations</strong>
-                        </div>
-                        <div className="summary-item">
-                          <span>Mode</span>
-                          <strong>Admin overview</strong>
-                        </div>
-                      </div>
-                    </section>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="proof-strip">
-        <div className="wrap proof-grid">
-          {proofStats.map((item) => (
-            <div key={item.label} className="proof-card">
-              <strong>{item.value}</strong>
-              <span>{item.label}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="section interface-section">
-        <div className="wrap interface-layout">
-          <div className="section-header compact">
-            <div className="eyebrow">Interface showcase</div>
-            <h2>Software that looks ready for real operational use.</h2>
-            <p>
-              Buyers should be able to see the value quickly: cleaner structure,
-              clearer controls and less admin noise from day one.
-            </p>
-          </div>
-          <div className="interface-preview">
-            <div className="interface-frame">
-              <div className="interface-sidebar">
-                <div className="interface-brand">DH Workplace</div>
-                <div className="interface-nav">
-                  <span className="active">Dashboard</span>
-                  <span>People</span>
-                  <span>Leave</span>
-                  <span>Documents</span>
-                  <span>Policies</span>
-                  <span>Clients</span>
-                  <span>Billing</span>
-                  <span>Reports</span>
-                </div>
-              </div>
-              <div className="interface-main">
-                <div className="interface-toolbar">
-                  <div>
-                    <strong>Workspace summary</strong>
-                    <span>Tuesday, 31 March 2026</span>
-                  </div>
-                  <div className="interface-toolbar-actions">
-                    <span>Business</span>
-                    <span>Trial</span>
-                    <span>Ready</span>
-                  </div>
-                </div>
-                <div className="interface-grid">
-                  <div className="interface-card wide">
-                    <div className="interface-label">Operational health</div>
-                    <div className="interface-chart">
-                      <span className="bar tall" />
-                      <span className="bar mid" />
-                      <span className="bar short" />
-                      <span className="bar mid" />
-                      <span className="bar tall" />
-                    </div>
-                  </div>
-                  <div className="interface-card">
-                    <div className="interface-label">Pending approvals</div>
-                    <strong>7</strong>
-                    <p>Visible immediately to managers</p>
-                  </div>
-                  <div className="interface-card">
-                    <div className="interface-label">Active clients</div>
-                    <strong>41</strong>
-                    <p>Commercial oversight in one view</p>
-                  </div>
-                  <div className="interface-card wide">
-                    <div className="interface-label">Quick actions</div>
-                    <div className="interface-actions">
-                      <span>Add team member</span>
-                      <span>Create task</span>
-                      <span>Approve leave</span>
-                      <span>Issue invoice</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="interface-notes">
-              {interfaceHighlights.map((item) => (
-                <article key={item.title} className="interface-note">
-                  <h3>{item.title}</h3>
-                  <p>{item.copy}</p>
-                </article>
-              ))}
             </div>
           </div>
         </div>
@@ -571,8 +394,8 @@ function LandingPage() {
       <section className="section architecture-section">
         <div className="wrap architecture-shell">
           <div className="section-header compact">
-            <div className="eyebrow">Platform architecture</div>
-            <h2>Three operating layers. One buying decision.</h2>
+            <div className="eyebrow">How It Fits</div>
+            <h2>One platform across people, operations and commercial control.</h2>
             <p>
               The value becomes obvious when the structure is obvious: people,
               operations and commercial control inside one connected system.
@@ -586,45 +409,6 @@ function LandingPage() {
                   {column.items.map((item) => (
                     <span key={item}>{item}</span>
                   ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section dark-band">
-        <div className="wrap pillar-grid">
-          {platformPillars.map((pillar) => (
-            <article key={pillar.title} className="pillar-card">
-              <div className="eyebrow muted">{pillar.kicker}</div>
-              <h3>{pillar.title}</h3>
-              <p>{pillar.copy}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section comparison-section">
-        <div className="wrap">
-          <div className="section-header compact">
-            <div className="eyebrow">Why it wins</div>
-            <h2>Less patchwork. More control.</h2>
-            <p>
-              This is a better way to run the company, not just another place to store admin.
-            </p>
-          </div>
-          <div className="comparison-grid">
-            {comparisons.map((item) => (
-              <article key={item.title} className="comparison-card">
-                <h3>{item.title}</h3>
-                <div className="comparison-row">
-                  <span className="comparison-label">Typical setup</span>
-                  <p>{item.before}</p>
-                </div>
-                <div className="comparison-row improved">
-                  <span className="comparison-label">With DH Workplace</span>
-                  <p>{item.after}</p>
                 </div>
               </article>
             ))}
@@ -701,6 +485,17 @@ function PricingPage() {
       </section>
 
       <section className="section">
+        <div className="wrap pricing-intro">
+          <div className="pricing-lead">
+            <div className="eyebrow">Pricing</div>
+            <h2>Choose the level of structure your business needs now.</h2>
+            <p>Every plan starts with a 14-day free trial. Launch pricing is live now, so the easiest time to switch is before more process debt builds up.</p>
+          </div>
+          <div className="pricing-callout">
+            <strong>Growth is the best fit for most businesses.</strong>
+            <span>It gives you the strongest balance of operational control, team visibility and reporting without overcomplicating rollout.</span>
+          </div>
+        </div>
         <div className="wrap pricing-grid">
           {pricingPlans.map((plan) => (
             <article
@@ -713,6 +508,7 @@ function PricingPage() {
                 <strong>{plan.launch}</strong>
                 <span>{plan.normal} normal</span>
               </div>
+              <div className="pricing-subline">Launch pricing available now</div>
               <p>{plan.description}</p>
               <div className="plan-note">14-day free trial included. Start quickly, assess fit properly, and upgrade only when you need more.</div>
               <div className="feature-list">
