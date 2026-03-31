@@ -2,7 +2,7 @@ import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-do
 import { useEffect, useRef, useState } from 'react'
 
 const SITE_URL = 'https://dhworkplace.co.uk'
-const APP_URL = SITE_URL
+const APP_URL = 'https://app.dhworkplace.co.uk'
 const DEMO_MAILTO = 'mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo'
 const DEFAULT_OG_IMAGE = `${SITE_URL}/dh-workplace-logo.svg`
 
@@ -198,6 +198,49 @@ function ScrollToTop() {
   }, [pathname])
 
   return null
+}
+
+function useInView() {
+  const ref = useRef(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return undefined
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true)
+          observer.disconnect()
+        }
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -8% 0px',
+      },
+    )
+
+    observer.observe(node)
+
+    return () => observer.disconnect()
+  }, [])
+
+  return [ref, visible]
+}
+
+function Reveal({ children, className = '', delay = 0, as: Tag = 'div' }) {
+  const [ref, visible] = useInView()
+
+  return (
+    <Tag
+      ref={ref}
+      className={`${className} reveal ${visible ? 'is-visible' : ''}`.trim()}
+      style={{ '--reveal-delay': `${delay}ms` }}
+    >
+      {children}
+    </Tag>
+  )
 }
 
 function SEOHead() {
@@ -400,24 +443,24 @@ function LandingPage() {
         <div className="hero-orb hero-orb-two" />
         <div className="wrap hero-grid">
           <div className="hero-copy">
-            <div className="eyebrow">14-day free trial included</div>
-            <h1>
+            <div className="eyebrow hero-sequence hero-sequence-1">14-day free trial included</div>
+            <h1 className="hero-sequence hero-sequence-2">
               Bring operations
               <span className="headline-shift"> under control.</span>
             </h1>
-            <p className="hero-body">
+            <p className="hero-body hero-sequence hero-sequence-3">
               HR, CRM, staff, documents, leave, timesheets, billing and reporting in one disciplined system.
             </p>
-            <div className="hero-proofline">
+            <div className="hero-proofline hero-sequence hero-sequence-4">
               <span>Built for internal company operations</span>
             </div>
-            <div className="hero-actions">
+            <div className="hero-actions hero-sequence hero-sequence-5">
               <a href={APP_URL} className="button primary">
                 Start 14-day trial
               </a>
               <Link to="/pricing" className="button secondary">See pricing</Link>
             </div>
-            <div className="stat-row">
+            <div className="stat-row hero-sequence hero-sequence-6">
               {productStats.map((item) => (
                 <div key={item.label} className="stat-card">
                   <strong>{item.value}</strong>
@@ -427,7 +470,7 @@ function LandingPage() {
             </div>
           </div>
 
-          <div className="hero-visual" aria-label="DH Workplace product preview">
+          <div className="hero-visual hero-sequence hero-sequence-4" aria-label="DH Workplace product preview">
             <div className="dashboard-shell">
               <div className="browser-chrome">
                 <div className="browser-controls">
@@ -542,7 +585,7 @@ function LandingPage() {
         </div>
       </section>
 
-      <section className="section">
+      <Reveal as="section" className="section" delay={20}>
         <div className="wrap section-header">
           <div className="eyebrow">Core platform</div>
           <h2>The core systems a growing business needs in one place.</h2>
@@ -558,9 +601,9 @@ function LandingPage() {
             </article>
           ))}
         </div>
-      </section>
+      </Reveal>
 
-      <section className="section">
+      <Reveal as="section" className="section" delay={40}>
         <div className="wrap trust-grid">
           <div className="trust-copy">
             <div className="eyebrow">Trust by design</div>
@@ -592,9 +635,9 @@ function LandingPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Reveal>
 
-      <section className="section final-cta">
+      <Reveal as="section" className="section final-cta" delay={60}>
         <div className="wrap final-cta-shell">
           <div>
             <div className="eyebrow">Ready to choose</div>
@@ -607,7 +650,7 @@ function LandingPage() {
             </a>
           </div>
         </div>
-      </section>
+      </Reveal>
     </main>
   )
 }
@@ -615,7 +658,7 @@ function LandingPage() {
 function PricingPage() {
   return (
     <main className="page-shell">
-      <section className="page-hero">
+      <Reveal as="section" className="page-hero" delay={10}>
         <div className="wrap pricing-intro">
           <div className="pricing-lead">
             <div className="eyebrow">Pricing</div>
@@ -627,14 +670,14 @@ function PricingPage() {
             <span>It gives you the clearest balance of control, visibility and reporting without making rollout feel heavy.</span>
           </div>
         </div>
-      </section>
+      </Reveal>
 
-      <section className="section pricing-section">
+      <Reveal as="section" className="section pricing-section" delay={30}>
         <div className="wrap pricing-grid">
           {pricingPlans.map((plan) => (
             <article
               key={plan.name}
-              className={`pricing-card ${plan.name === 'Growth' ? 'featured' : ''}`}
+              className={`pricing-card ${plan.name === 'Growth' ? 'featured pricing-card-spotlight' : ''}`}
             >
               <div className="pricing-badge">{plan.badge}</div>
               <h2>{plan.name}</h2>
@@ -664,7 +707,7 @@ function PricingPage() {
         <div className="pricing-footer-note">
           Need a walkthrough before deciding? Book a demo and we’ll show exactly where DH Workplace replaces admin drag in your business.
         </div>
-      </section>
+      </Reveal>
     </main>
   )
 }
@@ -674,7 +717,7 @@ function FaqPage() {
 
   return (
     <main className="page-shell">
-      <section className="page-hero faq-hero">
+      <Reveal as="section" className="page-hero faq-hero" delay={10}>
         <div className="wrap faq-hero-layout">
           <div>
           <div className="eyebrow">FAQ</div>
@@ -688,9 +731,9 @@ function FaqPage() {
             <span>Start the trial if you want speed. Book a demo if you want certainty.</span>
           </div>
         </div>
-      </section>
+      </Reveal>
 
-      <section className="section faq-section">
+      <Reveal as="section" className="section faq-section" delay={30}>
         <div className="wrap faq-stack">
           {faqs.map((item, index) => {
             const open = index === openIndex
@@ -704,7 +747,7 @@ function FaqPage() {
                 >
                   <span className="faq-index">{String(index + 1).padStart(2, '0')}</span>
                   <span className="faq-question">{item.q}</span>
-                  <span className="faq-plus">{open ? '−' : '+'}</span>
+                  <span className="faq-plus">+</span>
                 </button>
                 <div className="faq-answer-wrap">
                   <div className="faq-answer">
@@ -721,7 +764,7 @@ function FaqPage() {
             Book a demo
           </a>
         </div>
-      </section>
+      </Reveal>
     </main>
   )
 }
