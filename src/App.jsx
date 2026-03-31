@@ -90,6 +90,21 @@ const comparisons = [
   },
 ]
 
+const interfaceHighlights = [
+  {
+    title: 'Manager visibility',
+    copy: 'See team status, approvals, tasks and workspace readiness without chasing people for updates.',
+  },
+  {
+    title: 'Structured actions',
+    copy: 'The product is shaped around the next operational move, so common admin work feels controlled instead of improvised.',
+  },
+  {
+    title: 'Commercial awareness',
+    copy: 'CRM, billing and reporting stay close to operations, which gives leadership a cleaner commercial picture.',
+  },
+]
+
 const pricingPlans = [
   {
     name: 'Starter',
@@ -449,6 +464,88 @@ function LandingPage() {
               <span>{item.label}</span>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="section interface-section">
+        <div className="wrap interface-layout">
+          <div className="section-header compact">
+            <div className="eyebrow">Interface showcase</div>
+            <h2>Software that looks like it can actually run a business.</h2>
+            <p>
+              DH Workplace should feel operationally credible at first glance:
+              cleaner structure, clearer controls and less admin noise.
+            </p>
+          </div>
+          <div className="interface-preview">
+            <div className="interface-frame">
+              <div className="interface-sidebar">
+                <div className="interface-brand">DH Workplace</div>
+                <div className="interface-nav">
+                  <span className="active">Dashboard</span>
+                  <span>People</span>
+                  <span>Leave</span>
+                  <span>Documents</span>
+                  <span>Policies</span>
+                  <span>Clients</span>
+                  <span>Billing</span>
+                  <span>Reports</span>
+                </div>
+              </div>
+              <div className="interface-main">
+                <div className="interface-toolbar">
+                  <div>
+                    <strong>Workspace summary</strong>
+                    <span>Tuesday, 31 March 2026</span>
+                  </div>
+                  <div className="interface-toolbar-actions">
+                    <span>Business</span>
+                    <span>Trial</span>
+                    <span>Ready</span>
+                  </div>
+                </div>
+                <div className="interface-grid">
+                  <div className="interface-card wide">
+                    <div className="interface-label">Operational health</div>
+                    <div className="interface-chart">
+                      <span className="bar tall" />
+                      <span className="bar mid" />
+                      <span className="bar short" />
+                      <span className="bar mid" />
+                      <span className="bar tall" />
+                    </div>
+                  </div>
+                  <div className="interface-card">
+                    <div className="interface-label">Pending approvals</div>
+                    <strong>7</strong>
+                    <p>Visible immediately to managers</p>
+                  </div>
+                  <div className="interface-card">
+                    <div className="interface-label">Active clients</div>
+                    <strong>41</strong>
+                    <p>Commercial oversight in one view</p>
+                  </div>
+                  <div className="interface-card wide">
+                    <div className="interface-label">Quick actions</div>
+                    <div className="interface-actions">
+                      <span>Add team member</span>
+                      <span>Create task</span>
+                      <span>Approve leave</span>
+                      <span>Issue invoice</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="interface-notes">
+              {interfaceHighlights.map((item) => (
+                <article key={item.title} className="interface-note">
+                  <h3>{item.title}</h3>
+                  <p>{item.copy}</p>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
