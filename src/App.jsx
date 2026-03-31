@@ -1,8 +1,10 @@
 import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 
-const APP_URL = 'https://dhworkplace.co.uk'
+const SITE_URL = 'https://dhworkplace.co.uk'
+const APP_URL = SITE_URL
 const DEMO_MAILTO = 'mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo'
+const DEFAULT_OG_IMAGE = `${SITE_URL}/dh-workplace-logo.svg`
 
 const productStats = [
   { value: '14 days', label: 'free trial' },
@@ -96,11 +98,152 @@ const faqs = [
   },
 ]
 
+const seoPages = {
+  '/': {
+    title: 'DH Workplace | Business Operations Platform for HR, CRM and Reporting',
+    description:
+      'DH Workplace brings HR, CRM, staff management, documents, leave, timesheets, billing and reporting into one disciplined business operations platform.',
+    path: '/',
+    type: 'website',
+    structuredData: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'DH Workplace',
+        url: SITE_URL,
+        email: 'clients@dhwebsiteservices.co.uk',
+        parentOrganization: {
+          '@type': 'Organization',
+          name: 'DH Website Services',
+        },
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'DH Workplace',
+        url: SITE_URL,
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'DH Workplace',
+        applicationCategory: 'BusinessApplication',
+        operatingSystem: 'Web',
+        offers: [
+          {
+            '@type': 'Offer',
+            name: 'Starter',
+            price: '9',
+            priceCurrency: 'GBP',
+          },
+          {
+            '@type': 'Offer',
+            name: 'Growth',
+            price: '24',
+            priceCurrency: 'GBP',
+          },
+          {
+            '@type': 'Offer',
+            name: 'Business',
+            price: '59',
+            priceCurrency: 'GBP',
+          },
+        ],
+      },
+    ],
+  },
+  '/pricing': {
+    title: 'DH Workplace Pricing | Starter, Growth and Business Plans',
+    description:
+      'Compare DH Workplace pricing across Starter, Growth and Business plans, with launch pricing and a 14-day free trial.',
+    path: '/pricing',
+    type: 'website',
+    structuredData: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'DH Workplace Pricing',
+        url: `${SITE_URL}/pricing`,
+      },
+    ],
+  },
+  '/faq': {
+    title: 'DH Workplace FAQ | Trial, Pricing and Product Questions',
+    description:
+      'Read DH Workplace FAQs covering who it is for, how the free trial works, pricing, rollout and how it fits modern businesses.',
+    path: '/faq',
+    type: 'website',
+    structuredData: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqs.map((item) => ({
+          '@type': 'Question',
+          name: item.q,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: item.a,
+          },
+        })),
+      },
+    ],
+  },
+}
+
 function ScrollToTop() {
   const { pathname } = useLocation()
 
   useEffect(() => {
     window.scrollTo(0, 0)
+  }, [pathname])
+
+  return null
+}
+
+function SEOHead() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    const page = seoPages[pathname] ?? seoPages['/']
+    const canonicalUrl = `${SITE_URL}${page.path}`
+
+    document.title = page.title
+
+    const setMeta = (selector, attribute, value) => {
+      const element = document.head.querySelector(selector)
+      if (element) element.setAttribute(attribute, value)
+    }
+
+    const setLink = (selector, value) => {
+      const element = document.head.querySelector(selector)
+      if (element) element.setAttribute('href', value)
+    }
+
+    setMeta('meta[name="description"]', 'content', page.description)
+    setMeta('meta[name="robots"]', 'content', 'index, follow')
+    setMeta('meta[property="og:title"]', 'content', page.title)
+    setMeta('meta[property="og:description"]', 'content', page.description)
+    setMeta('meta[property="og:url"]', 'content', canonicalUrl)
+    setMeta('meta[property="og:type"]', 'content', page.type)
+    setMeta('meta[property="og:image"]', 'content', DEFAULT_OG_IMAGE)
+    setMeta('meta[name="twitter:title"]', 'content', page.title)
+    setMeta('meta[name="twitter:description"]', 'content', page.description)
+    setMeta('meta[name="twitter:image"]', 'content', DEFAULT_OG_IMAGE)
+    setLink('link[rel="canonical"]', canonicalUrl)
+
+    const existingScript = document.getElementById('seo-structured-data')
+    if (existingScript) existingScript.remove()
+
+    const script = document.createElement('script')
+    script.id = 'seo-structured-data'
+    script.type = 'application/ld+json'
+    script.textContent = JSON.stringify(page.structuredData)
+    document.head.appendChild(script)
+
+    return () => {
+      const currentScript = document.getElementById('seo-structured-data')
+      if (currentScript) currentScript.remove()
+    }
   }, [pathname])
 
   return null
@@ -161,6 +304,7 @@ function AppShell() {
   return (
     <>
       <ScrollToTop />
+      <SEOHead />
       <LogoCursor />
       <header className="site-header">
         <div className="wrap nav-shell">
