@@ -1,5 +1,5 @@
 import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const productStats = [
   { value: '14 days', label: 'free trial' },
@@ -57,6 +57,37 @@ const trustSignals = [
   'Policy and document control',
   'Operational reporting visibility',
   'Built for UK business workflows',
+]
+
+const proofStats = [
+  { value: 'One system', label: 'for people, process and reporting' },
+  { value: 'Faster onboarding', label: 'for teams moving out of spreadsheets' },
+  { value: 'Cleaner oversight', label: 'for leadership and management' },
+  { value: 'UK-ready', label: 'language and workflows that fit local business ops' },
+]
+
+const systemColumns = [
+  { title: 'People', items: ['HR records', 'onboarding', 'leave', 'timesheets'] },
+  { title: 'Operations', items: ['tasks', 'documents', 'policies', 'staff management'] },
+  { title: 'Commercial', items: ['CRM', 'clients', 'billing', 'reporting'] },
+]
+
+const comparisons = [
+  {
+    title: 'Spreadsheets and inboxes',
+    before: 'Scattered ownership, missing visibility and constant follow-up.',
+    after: 'One clear operating layer with accountable workflows and live status.',
+  },
+  {
+    title: 'Generic admin tools',
+    before: 'Lots of features, little operational discipline.',
+    after: 'A platform shaped around how a real business is actually run.',
+  },
+  {
+    title: 'Patchwork subscriptions',
+    before: 'Too many systems, too much duplicated effort.',
+    after: 'Sharper structure with fewer moving parts to manage.',
+  },
 ]
 
 const pricingPlans = [
@@ -120,6 +151,15 @@ function ScrollToTop() {
 }
 
 function AppShell() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
+
   return (
     <>
       <ScrollToTop />
@@ -129,6 +169,17 @@ function AppShell() {
             <img className="brand-logo" src="/dh-workplace-logo.svg" alt="DH Workplace" />
             <span className="brand-name">DH Workplace</span>
           </Link>
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-label="Toggle navigation"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
           <nav className="nav-links">
             <Link to="/">Overview</Link>
             <Link to="/pricing">Pricing</Link>
@@ -142,6 +193,24 @@ function AppShell() {
               Book a demo
             </a>
             <a href="https://workplace.dhwebsiteservices.co.uk" className="button primary">
+              Start free trial
+            </a>
+          </div>
+        </div>
+        <div className={`mobile-panel ${menuOpen ? 'open' : ''}`}>
+          <div className="mobile-panel-links">
+            <Link to="/" onClick={() => setMenuOpen(false)}>Overview</Link>
+            <Link to="/pricing" onClick={() => setMenuOpen(false)}>Pricing</Link>
+            <Link to="/faq" onClick={() => setMenuOpen(false)}>FAQ</Link>
+          </div>
+          <div className="mobile-panel-actions">
+            <a href="https://workplace.dhwebsiteservices.co.uk" className="link-action" onClick={() => setMenuOpen(false)}>
+              Sign in
+            </a>
+            <a href="mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo" className="button secondary" onClick={() => setMenuOpen(false)}>
+              Book a demo
+            </a>
+            <a href="https://workplace.dhwebsiteservices.co.uk" className="button primary" onClick={() => setMenuOpen(false)}>
               Start free trial
             </a>
           </div>
@@ -197,6 +266,11 @@ function LandingPage() {
               DH Workplace brings HR, CRM, staff management, documents, policies,
               leave, timesheets, billing and reporting into one commanding platform.
             </p>
+            <div className="hero-proofline">
+              <span>Built for internal company operations</span>
+              <span>14-day free trial</span>
+              <span>by DH Website Services</span>
+            </div>
             <div className="hero-actions">
               <a href="https://workplace.dhwebsiteservices.co.uk" className="button primary">
                 Start free trial
@@ -358,6 +432,17 @@ function LandingPage() {
         </div>
       </section>
 
+      <section className="proof-strip">
+        <div className="wrap proof-grid">
+          {proofStats.map((item) => (
+            <div key={item.label} className="proof-card">
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="section">
         <div className="wrap section-header">
           <div className="eyebrow">Core platform</div>
@@ -377,6 +462,31 @@ function LandingPage() {
         </div>
       </section>
 
+      <section className="section architecture-section">
+        <div className="wrap architecture-shell">
+          <div className="section-header compact">
+            <div className="eyebrow">Platform architecture</div>
+            <h2>Three operating layers. One cleaner system.</h2>
+            <p>
+              DH Workplace becomes much easier to buy when the structure feels obvious:
+              people, operations and commercial control inside one connected platform.
+            </p>
+          </div>
+          <div className="system-grid">
+            {systemColumns.map((column) => (
+              <article key={column.title} className="system-card">
+                <h3>{column.title}</h3>
+                <div className="system-items">
+                  {column.items.map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section dark-band">
         <div className="wrap pillar-grid">
           {platformPillars.map((pillar) => (
@@ -386,6 +496,34 @@ function LandingPage() {
               <p>{pillar.copy}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="section comparison-section">
+        <div className="wrap">
+          <div className="section-header compact">
+            <div className="eyebrow">Why it wins</div>
+            <h2>Less patchwork. More operating discipline.</h2>
+            <p>
+              DH Workplace should feel like a better way to run the company, not
+              just another place to store admin.
+            </p>
+          </div>
+          <div className="comparison-grid">
+            {comparisons.map((item) => (
+              <article key={item.title} className="comparison-card">
+                <h3>{item.title}</h3>
+                <div className="comparison-row">
+                  <span className="comparison-label">Typical setup</span>
+                  <p>{item.before}</p>
+                </div>
+                <div className="comparison-row improved">
+                  <span className="comparison-label">With DH Workplace</span>
+                  <p>{item.after}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -472,6 +610,7 @@ function PricingPage() {
                 <span>{plan.normal} normal</span>
               </div>
               <p>{plan.description}</p>
+              <div className="plan-note">14-day free trial included. Clean setup. No heavy onboarding just to evaluate the platform.</div>
               <div className="feature-list">
                 {plan.features.map((feature) => (
                   <div key={feature} className="feature-item">
@@ -485,6 +624,9 @@ function PricingPage() {
               </a>
             </article>
           ))}
+        </div>
+        <div className="pricing-footer-note">
+          Need a walkthrough before deciding? Book a demo and we’ll show how DH Workplace fits your actual operating model.
         </div>
       </section>
     </main>

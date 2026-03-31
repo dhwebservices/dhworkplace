@@ -111,6 +111,27 @@ a {
   letter-spacing: -0.03em;
 }
 
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(7, 19, 38, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--ink);
+}
+
 .nav-links,
 .nav-actions,
 .footer-links {
@@ -126,6 +147,10 @@ a {
   color: var(--ink-soft);
   font-size: 14px;
   font-weight: 600;
+}
+
+.mobile-panel {
+  display: none;
 }
 
 .button {
@@ -244,6 +269,26 @@ a {
   margin: 26px 0 0;
 }
 
+.hero-proofline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.hero-proofline span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(7, 19, 38, 0.08);
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -292,6 +337,38 @@ a {
 
 .hero-visual {
   position: relative;
+}
+
+.proof-strip {
+  padding: 0 0 26px;
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.proof-card {
+  padding: 22px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(7, 19, 38, 0.08);
+  box-shadow: var(--shadow-md);
+}
+
+.proof-card strong {
+  display: block;
+  font-size: 22px;
+  letter-spacing: -0.04em;
+}
+
+.proof-card span {
+  display: block;
+  margin-top: 10px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .dashboard-shell {
@@ -701,6 +778,10 @@ a {
   margin-bottom: 34px;
 }
 
+.section-header.compact {
+  max-width: 720px;
+}
+
 .section-header h2,
 .trust-copy h2,
 .final-cta-shell h2,
@@ -734,6 +815,58 @@ a {
   line-height: 1.8;
 }
 
+.architecture-section {
+  padding-top: 12px;
+}
+
+.architecture-shell {
+  border-radius: 34px;
+  padding: 36px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(7, 19, 38, 0.08);
+  box-shadow: var(--shadow-md);
+}
+
+.system-grid,
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.system-card,
+.comparison-card {
+  border-radius: 24px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(7, 19, 38, 0.08);
+}
+
+.system-card h3,
+.comparison-card h3 {
+  margin: 0 0 16px;
+  font-size: 24px;
+  letter-spacing: -0.04em;
+}
+
+.system-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.system-items span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(10, 108, 255, 0.08);
+  color: #244575;
+  font-size: 13px;
+  font-weight: 700;
+}
+
 .dark-band {
   background: linear-gradient(180deg, #09111f 0%, #0b1627 100%);
   color: white;
@@ -762,6 +895,44 @@ a {
 .pillar-card p {
   color: rgba(255, 255, 255, 0.68);
   margin: 0;
+}
+
+.comparison-section {
+  padding-top: 24px;
+}
+
+.comparison-card {
+  display: grid;
+  gap: 16px;
+}
+
+.comparison-row {
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(246, 249, 252, 0.92);
+  border: 1px solid rgba(7, 19, 38, 0.06);
+}
+
+.comparison-row.improved {
+  background: rgba(10, 108, 255, 0.08);
+  border-color: rgba(10, 108, 255, 0.14);
+}
+
+.comparison-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-muted);
+}
+
+.comparison-row p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.7;
 }
 
 .trust-grid {
@@ -918,6 +1089,32 @@ a {
   font-size: 14px;
 }
 
+.plan-note {
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(246, 249, 252, 0.85);
+  border: 1px solid rgba(7, 19, 38, 0.06);
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.pricing-card.featured .plan-note {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.pricing-footer-note {
+  max-width: 760px;
+  margin: 28px auto 0;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
 .faq-card h2 {
   font-size: 28px;
   margin-bottom: 14px;
@@ -980,7 +1177,10 @@ a {
   .trust-grid,
   .pillar-grid,
   .pricing-grid,
-  .capability-grid {
+  .capability-grid,
+  .proof-grid,
+  .system-grid,
+  .comparison-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1015,6 +1215,60 @@ a {
     padding-top: 24px;
   }
 
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .nav-links,
+  .nav-actions {
+    display: none;
+  }
+
+  .nav-shell {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .mobile-panel {
+    display: block;
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    top: calc(100% + 10px);
+    padding: 18px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(7, 19, 38, 0.08);
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .mobile-panel.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .mobile-panel-links,
+  .mobile-panel-actions {
+    display: grid;
+    gap: 10px;
+  }
+
+  .mobile-panel-links {
+    margin-bottom: 16px;
+  }
+
+  .mobile-panel-links a {
+    padding: 10px 0;
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 700;
+  }
+
   .dashboard-content {
     grid-template-columns: 1fr;
   }
@@ -1027,6 +1281,21 @@ a {
   .workspace-stats,
   .summary-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero-proofline {
+    gap: 8px;
+  }
+
+  .hero-proofline span {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .architecture-shell,
+  .system-card,
+  .comparison-card {
+    padding: 20px;
   }
 
   .hero-copy h1,
@@ -1047,7 +1316,8 @@ a {
   .pillar-card,
   .trust-panel,
   .final-cta-shell,
-  .dashboard-shell {
+  .dashboard-shell,
+  .proof-card {
     padding-left: 20px;
     padding-right: 20px;
   }
