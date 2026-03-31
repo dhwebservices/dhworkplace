@@ -12,6 +12,129 @@ const productStats = [
   { value: '6 core systems', label: 'under one login' },
 ]
 
+const heroPreviewViews = {
+  dashboard: {
+    section: 'Overview',
+    title: 'Dashboard',
+    headline: 'Good morning',
+    subline: 'Tuesday, 31 March 2026',
+    status: '14 days left in trial',
+    stats: [
+      ['1', 'Team members', 'blue'],
+      ['41', 'Active clients', 'green'],
+      ['7', 'Pending approvals', 'amber'],
+    ],
+    panelTitle: 'Quick actions',
+    panelCopy: 'The next operational moves, surfaced clearly.',
+    items: [
+      ['Add team member', 'Invite a new person and assign their role'],
+      ['Add client', 'Create a client account and assign ownership'],
+      ['Approve leave', 'Review time away with clear manager visibility'],
+    ],
+  },
+  staff: {
+    section: 'HR',
+    title: 'Staff Directory',
+    headline: 'Team visibility',
+    subline: 'Roles, teams and reporting lines in one place',
+    status: 'Managers view live team structure',
+    stats: [
+      ['12', 'Active staff', 'blue'],
+      ['4', 'Departments', 'green'],
+      ['3', 'Open onboarding', 'amber'],
+    ],
+    panelTitle: 'Recent team updates',
+    panelCopy: 'The operational changes leadership needs to see quickly.',
+    items: [
+      ['New starter added', 'Operations Coordinator assigned to Client Services'],
+      ['Reporting line updated', 'Sales now reports into Commercial Director'],
+      ['Profile completed', 'HR records confirmed for payroll readiness'],
+    ],
+  },
+  leave: {
+    section: 'HR',
+    title: 'Leave',
+    headline: 'Leave requests',
+    subline: 'Approvals and visibility before they become schedule problems',
+    status: '2 requests need review today',
+    stats: [
+      ['12', 'Days booked', 'blue'],
+      ['2', 'Pending review', 'amber'],
+      ['0', 'Policy issues', 'green'],
+    ],
+    panelTitle: 'Pending decisions',
+    panelCopy: 'Managers can act quickly with the right context in view.',
+    items: [
+      ['Sarah Ahmed', 'Annual leave · 8 Apr to 10 Apr · awaiting approval'],
+      ['Daniel Reed', 'Medical leave · documents attached · review today'],
+      ['Coverage check', 'Client support remains fully staffed next week'],
+    ],
+  },
+  documents: {
+    section: 'HR',
+    title: 'Documents',
+    headline: 'Document control',
+    subline: 'Policies, files and acknowledgements held in one controlled layer',
+    status: '3 policy acknowledgements outstanding',
+    stats: [
+      ['28', 'Live documents', 'blue'],
+      ['92%', 'Policy acknowledged', 'green'],
+      ['3', 'Need review', 'amber'],
+    ],
+    panelTitle: 'Latest document activity',
+    panelCopy: 'Keep policies visible and staff acknowledgements current.',
+    items: [
+      ['Handbook updated', 'Version 3.2 published to all active staff'],
+      ['Policy reminder sent', 'Expenses policy outstanding for 3 team members'],
+      ['Document approved', 'Onboarding pack signed off by management'],
+    ],
+  },
+  clients: {
+    section: 'Clients',
+    title: 'Clients',
+    headline: 'Client overview',
+    subline: 'Ownership, status and operational activity in one commercial view',
+    status: '41 active clients in the workspace',
+    stats: [
+      ['41', 'Active clients', 'green'],
+      ['7', 'At-risk accounts', 'amber'],
+      ['£84k', 'Billed this month', 'blue'],
+    ],
+    panelTitle: 'Client movements',
+    panelCopy: 'Commercial visibility without switching systems.',
+    items: [
+      ['Northstar Creative', 'Owner assigned · onboarding in progress'],
+      ['Aster Group', 'Renewal opportunity flagged for management review'],
+      ['Holloway Studio', 'Invoice approved and billing status updated'],
+    ],
+  },
+  pipeline: {
+    section: 'Clients',
+    title: 'Pipeline',
+    headline: 'Pipeline health',
+    subline: 'Keep new business momentum and handoff clarity in one place',
+    status: '4 live opportunities due this month',
+    stats: [
+      ['9', 'Live deals', 'blue'],
+      ['4', 'Closing soon', 'amber'],
+      ['£126k', 'Pipeline value', 'green'],
+    ],
+    panelTitle: 'Active opportunities',
+    panelCopy: 'A cleaner view of progress, ownership and next actions.',
+    items: [
+      ['Northstar retainer', 'Proposal sent · awaiting commercial sign-off'],
+      ['Atlas rebuild', 'Discovery complete · quotation due tomorrow'],
+      ['Beacon support', 'Handoff to operations planned after close'],
+    ],
+  },
+}
+
+const heroPreviewNav = [
+  { group: 'Overview', items: [['dashboard', 'Dashboard']] },
+  { group: 'HR', items: [['staff', 'Staff Directory'], ['leave', 'Leave'], ['documents', 'Documents']] },
+  { group: 'Clients', items: [['clients', 'Clients'], ['pipeline', 'Pipeline']] },
+]
+
 const capabilityCards = [
   {
     title: 'HR',
@@ -335,6 +458,118 @@ function LogoCursor() {
   )
 }
 
+function HeroProductPreview() {
+  const [activeView, setActiveView] = useState('dashboard')
+  const preview = heroPreviewViews[activeView]
+
+  return (
+    <div className="hero-visual hero-sequence hero-sequence-4" aria-label="DH Workplace product preview">
+      <div className="dashboard-shell">
+        <div className="browser-chrome">
+          <div className="browser-controls">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="browser-url">dhworkplace.co.uk</div>
+          <div className="browser-tools">
+            <span className="browser-tool" />
+            <span className="browser-tool" />
+          </div>
+        </div>
+        <div className="dashboard-topbar">
+          <div className="topbar-bookmark">dhwebservices/dhworkplace</div>
+          <div className="topbar-actions">
+            <span className="topbar-tab">DH Workplace</span>
+            <span className="topbar-tab muted">{preview.title}</span>
+          </div>
+        </div>
+
+        <div className="dashboard-content">
+          <aside className="dashboard-rail">
+            <div>
+              <div className="dashboard-kicker">Workspace</div>
+              <div className="workspace-title">DH Workplace</div>
+              <div className="workspace-subtitle">DH Workplace</div>
+            </div>
+            <div className="workspace-tags">
+              <span>Business</span>
+              <span>Trial</span>
+            </div>
+            {heroPreviewNav.map((group) => (
+              <div key={group.group} className="rail-group">
+                <div className="rail-heading">{group.group}</div>
+                <div className="rail-stack">
+                  {group.items.map(([id, label]) => (
+                    <button
+                      key={id}
+                      type="button"
+                      className={`rail-item ${activeView === id ? 'active' : ''}`}
+                      onClick={() => setActiveView(id)}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </aside>
+
+          <div className="dashboard-main">
+            <div className="workspace-header">
+              <div>
+                <h2>{preview.headline}</h2>
+                <p>{preview.subline}</p>
+              </div>
+              <div className="workspace-statusbar">
+                <div className="status-pill">
+                  <span className="status-dot" />
+                  <div>
+                    <b>Workspace status</b>
+                    <span>{preview.status}</span>
+                  </div>
+                </div>
+                <span className="status-button">Trial</span>
+                <span className="status-button ghost">Details</span>
+                <span className="status-icon" />
+              </div>
+            </div>
+
+            <div className="preview-titlebar">
+              <span className="preview-section">{preview.section}</span>
+              <span className="preview-view">{preview.title}</span>
+            </div>
+
+            <div className="workspace-stats">
+              {preview.stats.map(([value, label, tone]) => (
+                <div key={label} className="workspace-stat">
+                  <strong className={`tone-${tone}`}>{value}</strong>
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="workspace-panels">
+              <section key={activeView} className="workspace-panel large workspace-panel-transition">
+                <h3>{preview.panelTitle}</h3>
+                <p>{preview.panelCopy}</p>
+                <div className="action-list">
+                  {preview.items.map(([title, copy]) => (
+                    <div key={title} className="action-item">
+                      <strong>{title}</strong>
+                      <span>{copy}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function AppShell() {
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -480,118 +715,7 @@ function LandingPage() {
             </div>
           </div>
 
-          <div className="hero-visual hero-sequence hero-sequence-4" aria-label="DH Workplace product preview">
-            <div className="dashboard-shell">
-              <div className="browser-chrome">
-                <div className="browser-controls">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-                <div className="browser-url">dhworkplace.co.uk</div>
-                <div className="browser-tools">
-                  <span className="browser-tool" />
-                  <span className="browser-tool" />
-                </div>
-              </div>
-              <div className="dashboard-topbar">
-                <div className="topbar-bookmark">dhwebservices/dhworkplace</div>
-                <div className="topbar-actions">
-                  <span className="topbar-tab">DH Workplace</span>
-                  <span className="topbar-tab muted">Overview</span>
-                </div>
-              </div>
-
-              <div className="dashboard-content">
-                <aside className="dashboard-rail">
-                  <div>
-                    <div className="dashboard-kicker">Workspace</div>
-                    <div className="workspace-title">DH Workplace</div>
-                    <div className="workspace-subtitle">DH Workplace</div>
-                  </div>
-                  <div className="workspace-tags">
-                    <span>Business</span>
-                    <span>Trial</span>
-                  </div>
-                  <div className="rail-group">
-                    <div className="rail-heading">Overview</div>
-                    <div className="rail-stack">
-                      <span className="rail-item active">Dashboard</span>
-                    </div>
-                  </div>
-                  <div className="rail-group">
-                    <div className="rail-heading">HR</div>
-                    <div className="rail-stack">
-                      <span className="rail-item">Staff Directory</span>
-                      <span className="rail-item">Leave</span>
-                      <span className="rail-item">Documents</span>
-                      <span className="rail-item">Timesheets</span>
-                    </div>
-                  </div>
-                  <div className="rail-group">
-                    <div className="rail-heading">Clients</div>
-                    <div className="rail-stack">
-                      <span className="rail-item">Clients</span>
-                      <span className="rail-item">Pipeline</span>
-                    </div>
-                  </div>
-                </aside>
-
-                <div className="dashboard-main">
-                  <div className="workspace-header">
-                    <div>
-                      <h2>Good morning</h2>
-                      <p>Tuesday, 31 March 2026</p>
-                    </div>
-                    <div className="workspace-statusbar">
-                      <div className="status-pill">
-                        <span className="status-dot" />
-                        <div>
-                          <b>Workspace status</b>
-                          <span>14 days left in trial</span>
-                        </div>
-                      </div>
-                      <span className="status-button">Trial</span>
-                      <span className="status-button ghost">Details</span>
-                      <span className="status-icon" />
-                    </div>
-                  </div>
-
-                  <div className="workspace-stats">
-                    {[
-                      ['1', 'Team members', 'blue'],
-                      ['41', 'Active clients', 'green'],
-                      ['7', 'Pending approvals', 'amber'],
-                    ].map(([value, label, tone]) => (
-                      <div key={label} className="workspace-stat">
-                        <strong className={`tone-${tone}`}>{value}</strong>
-                        <span>{label}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="workspace-panels">
-                    <section className="workspace-panel large">
-                      <h3>Quick actions</h3>
-                      <p>The next operational moves, surfaced clearly.</p>
-                      <div className="action-list">
-                        {[
-                          ['Add team member', 'Invite a new person and assign their role'],
-                          ['Add client', 'Create a client account and assign ownership'],
-                          ['Approve leave', 'Review time away with clear manager visibility'],
-                        ].map(([title, copy]) => (
-                          <div key={title} className="action-item">
-                            <strong>{title}</strong>
-                            <span>{copy}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </section>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <HeroProductPreview />
         </div>
       </section>
 
