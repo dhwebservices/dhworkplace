@@ -135,13 +135,13 @@ function AppShell() {
             <Link to="/faq">FAQ</Link>
           </nav>
           <div className="nav-actions">
-            <a href="https://app.dhworkplace.co.uk" className="link-action">
+            <a href="https://workplace.dhwebsiteservices.co.uk" className="link-action">
               Sign in
             </a>
             <a href="mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo" className="button secondary">
               Book a demo
             </a>
-            <a href="mailto:clients@dhwebsiteservices.co.uk?subject=Start%20DH%20Workplace%20Trial" className="button primary">
+            <a href="https://workplace.dhwebsiteservices.co.uk" className="button primary">
               Start free trial
             </a>
           </div>
@@ -198,7 +198,7 @@ function LandingPage() {
               leave, timesheets, billing and reporting into one commanding platform.
             </p>
             <div className="hero-actions">
-              <a href="mailto:clients@dhwebsiteservices.co.uk?subject=Start%20DH%20Workplace%20Trial" className="button primary">
+              <a href="https://workplace.dhwebsiteservices.co.uk" className="button primary">
                 Start free trial
               </a>
               <a href="mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo" className="button secondary">
@@ -432,7 +432,7 @@ function LandingPage() {
             <h2>Install a better operating rhythm across the business.</h2>
           </div>
           <div className="cta-stack">
-            <a href="mailto:clients@dhwebsiteservices.co.uk?subject=Start%20DH%20Workplace%20Trial" className="button primary">
+            <a href="https://workplace.dhwebsiteservices.co.uk" className="button primary">
               Start free trial
             </a>
             <a href="mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo" className="button secondary">
@@ -480,7 +480,7 @@ function PricingPage() {
                   </div>
                 ))}
               </div>
-              <a href="mailto:clients@dhwebsiteservices.co.uk?subject=Start%20DH%20Workplace%20Trial" className="button primary wide">
+              <a href="https://workplace.dhwebsiteservices.co.uk" className="button primary wide">
                 Start free trial
               </a>
             </article>
