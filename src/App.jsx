@@ -100,6 +100,40 @@ function ScrollToTop() {
   return null
 }
 
+function LogoCursor() {
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return undefined
+
+    const handleMove = (event) => {
+      setPosition({ x: event.clientX, y: event.clientY })
+      setVisible(true)
+    }
+
+    const handleLeave = () => setVisible(false)
+
+    window.addEventListener('mousemove', handleMove)
+    window.addEventListener('mouseleave', handleLeave)
+
+    return () => {
+      window.removeEventListener('mousemove', handleMove)
+      window.removeEventListener('mouseleave', handleLeave)
+    }
+  }, [])
+
+  return (
+    <div
+      className={`logo-cursor ${visible ? 'visible' : ''}`}
+      style={{ transform: `translate(${position.x - 14}px, ${position.y - 14}px)` }}
+      aria-hidden="true"
+    >
+      <img src="/dh-workplace-logo.svg" alt="" />
+    </div>
+  )
+}
+
 function AppShell() {
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -113,6 +147,7 @@ function AppShell() {
   return (
     <>
       <ScrollToTop />
+      <LogoCursor />
       <header className="site-header">
         <div className="wrap nav-shell">
           <Link to="/" className="brand-lockup">
@@ -213,8 +248,7 @@ function LandingPage() {
               <span className="headline-shift"> without the admin sprawl.</span>
             </h1>
             <p className="hero-body">
-              DH Workplace gives growing businesses one place to run HR, CRM,
-              staff management, documents, policies, leave, timesheets, billing and reporting.
+              One operating system for HR, CRM, staff, documents, leave, timesheets, billing and reporting.
             </p>
             <div className="hero-proofline">
               <span>Built for internal company operations</span>
@@ -356,7 +390,7 @@ function LandingPage() {
           <div className="eyebrow">Core platform</div>
           <h2>Built around the work that actually slows businesses down.</h2>
           <p>
-            Replace disconnected admin with one cleaner operating layer for your team and your managers.
+            Replace disconnected admin with one cleaner operating layer for your team.
           </p>
         </div>
         <div className="wrap capability-grid">
@@ -375,8 +409,7 @@ function LandingPage() {
             <div className="eyebrow">Trust by design</div>
             <h2>Structured to feel safe, credible and commercially serious.</h2>
             <p>
-              DH Workplace is for businesses that want stronger operational discipline,
-              clearer visibility and a more reliable path to scale.
+              For businesses that want stronger discipline, clearer visibility and a more reliable path to scale.
             </p>
             <div className="trust-list">
               {trustSignals.map((item) => (
@@ -430,11 +463,11 @@ function PricingPage() {
           <div className="pricing-lead">
             <div className="eyebrow">Pricing</div>
             <h1>Choose the level of structure your business needs now.</h1>
-            <p>Every plan starts with a 14-day free trial. Launch pricing is live now, so the easiest time to switch is before more process debt builds up.</p>
+            <p>Every plan starts with a 14-day free trial. Launch pricing is live now, so switching early is cheaper than carrying more process debt.</p>
           </div>
           <div className="pricing-callout">
             <strong>Growth is the best fit for most businesses.</strong>
-            <span>It gives you the strongest balance of operational control, team visibility and reporting without overcomplicating rollout.</span>
+            <span>It gives you the cleanest balance of control, visibility and reporting without making rollout feel heavy.</span>
           </div>
         </div>
       </section>
@@ -454,7 +487,7 @@ function PricingPage() {
               </div>
               <div className="pricing-subline">Launch pricing available now</div>
               <p>{plan.description}</p>
-              <div className="plan-note">14-day free trial included. Start quickly, assess fit properly, and upgrade only when you need more.</div>
+              <div className="plan-note">14-day free trial included. Start quickly, test properly, and only upgrade when the business needs more.</div>
               <div className="feature-list">
                 {plan.features.map((feature) => (
                   <div key={feature} className="feature-item">
@@ -478,26 +511,56 @@ function PricingPage() {
 }
 
 function FaqPage() {
+  const [openIndex, setOpenIndex] = useState(0)
+
   return (
     <main className="page-shell">
-      <section className="page-hero">
-        <div className="wrap">
+      <section className="page-hero faq-hero">
+        <div className="wrap faq-hero-layout">
+          <div>
           <div className="eyebrow">FAQ</div>
-          <h1>Questions answered clearly before you commit.</h1>
-          <p>
-            Everything here is designed to help you assess fit quickly, without vague product language.
-          </p>
+            <h1>Questions answered clearly before you commit.</h1>
+            <p>
+              Straight answers on fit, rollout and pricing so the decision feels commercial, not confusing.
+            </p>
+          </div>
+          <div className="faq-side-note">
+            <strong>Still deciding?</strong>
+            <span>Start the trial if you want speed. Book a demo if you want certainty.</span>
+          </div>
         </div>
       </section>
 
-      <section className="section">
-        <div className="wrap faq-list">
-          {faqs.map((item) => (
-            <article key={item.q} className="faq-card">
-              <h2>{item.q}</h2>
-              <p>{item.a}</p>
-            </article>
-          ))}
+      <section className="section faq-section">
+        <div className="wrap faq-stack">
+          {faqs.map((item, index) => {
+            const open = index === openIndex
+            return (
+              <article key={item.q} className={`faq-card faq-accordion ${open ? 'open' : ''}`}>
+                <button
+                  type="button"
+                  className="faq-trigger"
+                  onClick={() => setOpenIndex(open ? -1 : index)}
+                  aria-expanded={open}
+                >
+                  <span className="faq-index">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="faq-question">{item.q}</span>
+                  <span className="faq-plus">{open ? '−' : '+'}</span>
+                </button>
+                <div className="faq-answer-wrap">
+                  <div className="faq-answer">
+                    <p>{item.a}</p>
+                  </div>
+                </div>
+              </article>
+            )
+          })}
+        </div>
+        <div className="wrap faq-bottom-cta">
+          <Link to="/pricing" className="button primary">View pricing</Link>
+          <a href="mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo" className="button secondary">
+            Book a demo
+          </a>
         </div>
       </section>
     </main>

@@ -44,6 +44,14 @@ body {
   min-width: 320px;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  body,
+  a,
+  button {
+    cursor: none;
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -57,6 +65,29 @@ a {
 .wrap {
   width: min(calc(100% - 40px), var(--wrap));
   margin: 0 auto;
+}
+
+.logo-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  z-index: 120;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 180ms ease, transform 50ms linear;
+}
+
+.logo-cursor.visible {
+  opacity: 1;
+}
+
+.logo-cursor img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba(7, 19, 38, 0.16));
 }
 
 .site-header {
@@ -1023,7 +1054,8 @@ a {
 .pricing-card.featured p,
 .pricing-card.featured .feature-item,
 .pricing-card.featured .pricing-badge,
-.pricing-card.featured .price-row span {
+.pricing-card.featured .price-row span,
+.pricing-card.featured .pricing-subline {
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -1098,6 +1130,126 @@ a {
   margin: 0;
 }
 
+.faq-hero-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 20px;
+  align-items: end;
+}
+
+.faq-side-note {
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(7, 19, 38, 0.08);
+  box-shadow: var(--shadow-md);
+}
+
+.faq-side-note strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 18px;
+  letter-spacing: -0.03em;
+}
+
+.faq-side-note span {
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.faq-section {
+  padding-top: 28px;
+}
+
+.faq-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.faq-accordion {
+  overflow: hidden;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.faq-accordion:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 46px rgba(7, 19, 38, 0.12);
+  border-color: rgba(10, 108, 255, 0.14);
+}
+
+.faq-accordion.open {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(10, 108, 255, 0.16);
+}
+
+.faq-trigger {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 24px 28px;
+  background: transparent;
+  border: 0;
+  text-align: left;
+}
+
+.faq-index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-muted);
+}
+
+.faq-question {
+  font-size: 25px;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.faq-plus {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(246, 249, 252, 0.96);
+  border: 1px solid rgba(7, 19, 38, 0.08);
+  font-size: 24px;
+  color: var(--ink-soft);
+}
+
+.faq-answer-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 260ms ease;
+}
+
+.faq-accordion.open .faq-answer-wrap {
+  grid-template-rows: 1fr;
+}
+
+.faq-answer {
+  overflow: hidden;
+}
+
+.faq-answer p {
+  padding: 0 28px 26px 59px;
+  color: var(--ink-soft);
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.faq-bottom-cta {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 28px;
+}
+
 .site-footer {
   padding: 28px 0 44px;
 }
@@ -1151,7 +1303,8 @@ a {
   .trust-grid,
   .pricing-grid,
   .capability-grid,
-  .pricing-intro {
+  .pricing-intro,
+  .faq-hero-layout {
     grid-template-columns: 1fr;
   }
 
@@ -1265,6 +1418,27 @@ a {
     justify-content: center;
   }
 
+  .faq-trigger {
+    grid-template-columns: 1fr auto;
+    padding: 20px;
+  }
+
+  .faq-index {
+    display: none;
+  }
+
+  .faq-question {
+    font-size: 21px;
+  }
+
+  .faq-answer p {
+    padding: 0 20px 22px;
+  }
+
+  .faq-bottom-cta {
+    flex-direction: column;
+  }
+
   .pricing-callout {
     padding: 20px;
   }
@@ -1363,7 +1537,8 @@ a {
   .hero-actions .button,
   .cta-stack .button,
   .mobile-panel-actions .button,
-  .mobile-panel-actions .link-action {
+  .mobile-panel-actions .link-action,
+  .faq-bottom-cta .button {
     width: 100%;
   }
 
@@ -1410,6 +1585,10 @@ a {
 
   .workspace-header h2 {
     font-size: 20px;
+  }
+
+  .faq-question {
+    font-size: 18px;
   }
 
   .workspace-stat strong,
