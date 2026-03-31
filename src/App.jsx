@@ -291,16 +291,24 @@ function LandingPage() {
 
           <div className="hero-visual" aria-label="DH Workplace product preview">
             <div className="dashboard-shell">
-              <div className="dashboard-topbar">
-                <div className="window-dots">
+              <div className="browser-chrome">
+                <div className="browser-controls">
                   <span />
                   <span />
                   <span />
                 </div>
-                <div className="topbar-address">workplace.dhwebsiteservices.co.uk</div>
+                <div className="browser-url">workplace.dhwebsiteservices.co.uk</div>
+                <div className="browser-tools">
+                  <span className="browser-tool" />
+                  <span className="browser-tool" />
+                </div>
+              </div>
+              <div className="dashboard-topbar">
+                <div className="topbar-bookmark">dhwebservices/dhworkplace</div>
                 <div className="topbar-actions">
                   <span className="topbar-tab">DH Workplace</span>
                   <span className="topbar-tab muted">Overview</span>
+                  <span className="topbar-tab muted">DH Website Services</span>
                 </div>
               </div>
 
@@ -366,6 +374,7 @@ function LandingPage() {
                       </div>
                       <span className="status-button">Trial</span>
                       <span className="status-button ghost">Details</span>
+                      <span className="status-icon" />
                     </div>
                   </div>
 
