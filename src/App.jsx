@@ -1,35 +1,38 @@
 import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 
+const APP_URL = 'https://workplace.dhwebsiteservices.co.uk'
+const DEMO_MAILTO = 'mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo'
+
 const productStats = [
   { value: '14 days', label: 'free trial' },
-  { value: '6 core systems', label: 'under one login and one structure' },
+  { value: '6 core systems', label: 'under one login' },
 ]
 
 const capabilityCards = [
   {
     title: 'HR',
-    copy: 'Keep employee records, onboarding and policy visibility in one place instead of across inboxes, files and memory.',
+    copy: 'Employee records, onboarding and policy visibility in one controlled place.',
   },
   {
     title: 'CRM',
-    copy: 'Track leads, clients and ownership in one commercial view that management can actually trust.',
+    copy: 'Leads, clients and ownership in one commercial view management can trust.',
   },
   {
     title: 'Staff management',
-    copy: 'Make roles, responsibilities and day-to-day accountability visible as the business grows.',
+    copy: 'Clearer roles, responsibilities and day-to-day accountability as the team grows.',
   },
   {
     title: 'Documents and policies',
-    copy: 'Give staff one controlled place for documents, acknowledgements and policies, built for operations rather than storage alone.',
+    copy: 'A controlled home for documents, acknowledgements and policies.',
   },
   {
     title: 'Leave and timesheets',
-    copy: 'Reduce friction around time away, timesheets and manager approvals before they turn into payroll problems.',
+    copy: 'Time away, timesheets and approvals handled before they become payroll friction.',
   },
   {
     title: 'Billing and reporting',
-    copy: 'Bring reporting closer to the work so leadership can see the numbers that matter without blind spots.',
+    copy: 'Reporting and billing visibility closer to the work that drives the numbers.',
   },
 ]
 
@@ -46,7 +49,8 @@ const pricingPlans = [
     launch: '£9/mo',
     normal: '£19/mo',
     badge: 'Launch offer',
-    description: 'For smaller teams that want a cleaner internal operating system without adding complexity.',
+    fit: 'Best for smaller teams replacing scattered admin',
+    description: 'A cleaner operating layer for smaller teams that need structure without rollout drag.',
     features: ['HR essentials', 'CRM foundation', 'documents and policies', 'leave tracking', '14-day free trial'],
   },
   {
@@ -54,7 +58,8 @@ const pricingPlans = [
     launch: '£24/mo',
     normal: '£49/mo',
     badge: 'Most popular',
-    description: 'For growing businesses that need stronger visibility, better manager control and more operational structure.',
+    fit: 'Best for growing businesses that need proper structure',
+    description: 'The strongest balance of control, manager visibility and reporting for most businesses.',
     features: ['Everything in Starter', 'staff management', 'timesheets', 'advanced workflows', 'enhanced reporting'],
   },
   {
@@ -62,7 +67,8 @@ const pricingPlans = [
     launch: '£59/mo',
     normal: '£99/mo',
     badge: 'Best for scale',
-    description: 'For businesses that want a more complete operating system with stronger reporting and commercial confidence.',
+    fit: 'Best for leadership teams that want deeper control',
+    description: 'Deeper control, stronger reporting and broader oversight for leadership teams.',
     features: ['Everything in Growth', 'billing visibility', 'deeper reporting', 'priority support', 'admin-level oversight'],
   },
 ]
@@ -179,13 +185,13 @@ function AppShell() {
             <Link to="/faq">FAQ</Link>
           </nav>
           <div className="nav-actions">
-            <a href="https://workplace.dhwebsiteservices.co.uk" className="link-action">
+            <a href={APP_URL} className="link-action">
               Sign in
             </a>
-            <a href="mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo" className="button secondary">
+            <a href={DEMO_MAILTO} className="button secondary">
               Book a demo
             </a>
-            <a href="https://workplace.dhwebsiteservices.co.uk" className="button primary">
+            <a href={APP_URL} className="button primary">
               Start free trial
             </a>
           </div>
@@ -197,13 +203,13 @@ function AppShell() {
             <Link to="/faq" onClick={() => setMenuOpen(false)}>FAQ</Link>
           </div>
           <div className="mobile-panel-actions">
-            <a href="https://workplace.dhwebsiteservices.co.uk" className="link-action" onClick={() => setMenuOpen(false)}>
+            <a href={APP_URL} className="link-action" onClick={() => setMenuOpen(false)}>
               Sign in
             </a>
-            <a href="mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo" className="button secondary" onClick={() => setMenuOpen(false)}>
+            <a href={DEMO_MAILTO} className="button secondary" onClick={() => setMenuOpen(false)}>
               Book a demo
             </a>
-            <a href="https://workplace.dhwebsiteservices.co.uk" className="button primary" onClick={() => setMenuOpen(false)}>
+            <a href={APP_URL} className="button primary" onClick={() => setMenuOpen(false)}>
               Start free trial
             </a>
           </div>
@@ -250,23 +256,22 @@ function LandingPage() {
         <div className="hero-orb hero-orb-two" />
         <div className="wrap hero-grid">
           <div className="hero-copy">
-            <div className="eyebrow">The operating system for modern business</div>
+            <div className="eyebrow">14-day free trial included</div>
             <h1>
-              Run the business
-              <span className="headline-shift"> without the admin sprawl.</span>
+              Bring operations
+              <span className="headline-shift"> under control.</span>
             </h1>
             <p className="hero-body">
-              One operating system for HR, CRM, staff, documents, leave, timesheets, billing and reporting.
+              HR, CRM, staff, documents, leave, timesheets, billing and reporting in one disciplined system.
             </p>
             <div className="hero-proofline">
               <span>Built for internal company operations</span>
-              <span>14-day free trial</span>
             </div>
             <div className="hero-actions">
-              <a href="https://workplace.dhwebsiteservices.co.uk" className="button primary">
-                Start free trial
+              <a href={APP_URL} className="button primary">
+                Start 14-day trial
               </a>
-              <Link to="/pricing" className="button secondary">View pricing</Link>
+              <Link to="/pricing" className="button secondary">See pricing</Link>
             </div>
             <div className="stat-row">
               {productStats.map((item) => (
@@ -396,9 +401,9 @@ function LandingPage() {
       <section className="section">
         <div className="wrap section-header">
           <div className="eyebrow">Core platform</div>
-          <h2>Built around the work that actually slows businesses down.</h2>
+          <h2>The core systems a growing business needs in one place.</h2>
           <p>
-            Replace disconnected admin with one cleaner operating layer for your team.
+            Fewer tools, less admin drift, clearer ownership.
           </p>
         </div>
         <div className="wrap capability-grid">
@@ -415,9 +420,9 @@ function LandingPage() {
         <div className="wrap trust-grid">
           <div className="trust-copy">
             <div className="eyebrow">Trust by design</div>
-            <h2>Structured to feel safe, credible and commercially serious.</h2>
+            <h2>Structured to feel credible from day one.</h2>
             <p>
-              For businesses that want stronger discipline, clearer visibility and a more reliable path to scale.
+              Built for businesses that need tighter internal control as they scale.
             </p>
             <div className="trust-list">
               {trustSignals.map((item) => (
@@ -448,12 +453,12 @@ function LandingPage() {
       <section className="section final-cta">
         <div className="wrap final-cta-shell">
           <div>
-            <div className="eyebrow">Ready to Choose?</div>
-            <h2>Go to pricing, choose the right plan, and start the trial.</h2>
+            <div className="eyebrow">Ready to choose</div>
+            <h2>Pricing is where the decision gets simple.</h2>
           </div>
           <div className="cta-stack">
             <Link to="/pricing" className="button primary">View pricing</Link>
-            <a href="mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo" className="button secondary">
+            <a href={DEMO_MAILTO} className="button secondary">
               Book a demo
             </a>
           </div>
@@ -471,11 +476,11 @@ function PricingPage() {
           <div className="pricing-lead">
             <div className="eyebrow">Pricing</div>
             <h1>Choose the level of structure your business needs now.</h1>
-            <p>Every plan starts with a 14-day free trial. Launch pricing is live now, so switching early is cheaper than carrying more process debt.</p>
+            <p>Start with the right level, trial it properly, and upgrade only when the business needs more.</p>
           </div>
           <div className="pricing-callout">
             <strong>Growth is the best fit for most businesses.</strong>
-            <span>It gives you the cleanest balance of control, visibility and reporting without making rollout feel heavy.</span>
+            <span>It gives you the clearest balance of control, visibility and reporting without making rollout feel heavy.</span>
           </div>
         </div>
       </section>
@@ -489,13 +494,14 @@ function PricingPage() {
             >
               <div className="pricing-badge">{plan.badge}</div>
               <h2>{plan.name}</h2>
+              <div className="pricing-fit">{plan.fit}</div>
               <div className="price-row">
                 <strong>{plan.launch}</strong>
                 <span>{plan.normal} normal</span>
               </div>
               <div className="pricing-subline">Launch pricing available now</div>
               <p>{plan.description}</p>
-              <div className="plan-note">14-day free trial included. Start quickly, test properly, and only upgrade when the business needs more.</div>
+              <div className="plan-note">14-day free trial included. Start quickly, validate fit, then scale with confidence.</div>
               <div className="feature-list">
                 {plan.features.map((feature) => (
                   <div key={feature} className="feature-item">
@@ -504,9 +510,10 @@ function PricingPage() {
                   </div>
                 ))}
               </div>
-              <a href="https://workplace.dhwebsiteservices.co.uk" className="button primary wide">
-                Start free trial
+              <a href={APP_URL} className="button primary wide">
+                Start 14-day trial
               </a>
+              <div className="pricing-cta-note">No sales call required to start.</div>
             </article>
           ))}
         </div>
@@ -566,7 +573,7 @@ function FaqPage() {
         </div>
         <div className="wrap faq-bottom-cta">
           <Link to="/pricing" className="button primary">View pricing</Link>
-          <a href="mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo" className="button secondary">
+          <a href={DEMO_MAILTO} className="button secondary">
             Book a demo
           </a>
         </div>
