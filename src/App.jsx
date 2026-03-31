@@ -1,5 +1,5 @@
 import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const productStats = [
   { value: '14 days', label: 'free trial' },
@@ -101,34 +101,42 @@ function ScrollToTop() {
 }
 
 function LogoCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [visible, setVisible] = useState(false)
+  const cursorRef = useRef(null)
+  const frameRef = useRef(0)
+  const targetRef = useRef({ x: 0, y: 0 })
 
   useEffect(() => {
     if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return undefined
 
-    const handleMove = (event) => {
-      setPosition({ x: event.clientX, y: event.clientY })
-      setVisible(true)
+    const cursorEl = cursorRef.current
+    if (!cursorEl) return undefined
+
+    const render = () => {
+      const { x, y } = targetRef.current
+      cursorEl.style.transform = `translate3d(${x - 14}px, ${y - 14}px, 0)`
+      frameRef.current = 0
     }
 
-    const handleLeave = () => setVisible(false)
+    const handleMove = (event) => {
+      targetRef.current = { x: event.clientX, y: event.clientY }
+      cursorEl.classList.add('visible')
+      if (!frameRef.current) frameRef.current = window.requestAnimationFrame(render)
+    }
+
+    const handleLeave = () => cursorEl.classList.remove('visible')
 
     window.addEventListener('mousemove', handleMove)
     window.addEventListener('mouseleave', handleLeave)
 
     return () => {
+      if (frameRef.current) window.cancelAnimationFrame(frameRef.current)
       window.removeEventListener('mousemove', handleMove)
       window.removeEventListener('mouseleave', handleLeave)
     }
   }, [])
 
   return (
-    <div
-      className={`logo-cursor ${visible ? 'visible' : ''}`}
-      style={{ transform: `translate(${position.x - 14}px, ${position.y - 14}px)` }}
-      aria-hidden="true"
-    >
+    <div ref={cursorRef} className="logo-cursor" aria-hidden="true">
       <img src="/dh-workplace-logo.svg" alt="" />
     </div>
   )
