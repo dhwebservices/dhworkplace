@@ -3,34 +3,34 @@ import { useEffect, useState } from 'react'
 
 const productStats = [
   { value: '14 days', label: 'free trial' },
-  { value: '6 core systems', label: 'in one operating layer' },
-  { value: '< 1 hour', label: 'to brief your team' },
+  { value: '6 core systems', label: 'under one login and one structure' },
+  { value: '< 1 hour', label: 'to get your team oriented' },
 ]
 
 const capabilityCards = [
   {
     title: 'HR',
-    copy: 'Policies, onboarding, employee records and operational structure, without scattering information across inboxes and folders.',
+    copy: 'Keep employee records, onboarding and policy visibility in one place instead of across inboxes, files and memory.',
   },
   {
     title: 'CRM',
-    copy: 'Track leads, customers and internal accountability in a single commercial view that sales and management can actually trust.',
+    copy: 'Track leads, clients and ownership in one commercial view that management can actually trust.',
   },
   {
     title: 'Staff management',
-    copy: 'Keep roles, responsibilities, workflows and oversight visible as your business scales beyond ad-hoc management.',
+    copy: 'Make roles, responsibilities and day-to-day accountability visible as the business grows.',
   },
   {
     title: 'Documents and policies',
-    copy: 'One controlled system for company documents, acknowledgements and policy visibility, built for real operations rather than storage alone.',
+    copy: 'Give staff one controlled place for documents, acknowledgements and policies, built for operations rather than storage alone.',
   },
   {
     title: 'Leave and timesheets',
-    copy: 'Make time visible, requests controlled and payroll preparation far less painful for managers and teams.',
+    copy: 'Reduce friction around time away, timesheets and manager approvals before they turn into payroll problems.',
   },
   {
     title: 'Billing and reporting',
-    copy: 'Surface the numbers that matter, bring reporting closer to the work, and reduce blind spots across the business.',
+    copy: 'Bring reporting closer to the work so leadership can see the numbers that matter without blind spots.',
   },
 ]
 
@@ -38,17 +38,17 @@ const platformPillars = [
   {
     kicker: 'Control',
     title: 'Bring operational sprawl back into one command surface.',
-    copy: 'DH Workplace is built for businesses that have outgrown spreadsheets, fragmented subscriptions and inconsistent internal process.',
+    copy: 'Built for businesses that have outgrown spreadsheets, fragmented subscriptions and inconsistent internal process.',
   },
   {
     kicker: 'Clarity',
     title: 'Make work visible across teams, not trapped inside individuals.',
-    copy: 'The platform is designed to replace guesswork with structure so leadership can see what is happening without chasing updates.',
+    copy: 'Replace guesswork with structure so leadership can see what is happening without chasing updates.',
   },
   {
     kicker: 'Scale',
     title: 'Install better operational discipline before growth makes it expensive.',
-    copy: 'The goal is not just software adoption. It is operational maturity, delivered in a format your team can actually use.',
+    copy: 'This is not just software adoption. It is operational maturity in a format your team can actually use.',
   },
 ]
 
@@ -61,9 +61,9 @@ const trustSignals = [
 
 const proofStats = [
   { value: 'One system', label: 'for people, process and reporting' },
-  { value: 'Faster onboarding', label: 'for teams moving out of spreadsheets' },
-  { value: 'Cleaner oversight', label: 'for leadership and management' },
-  { value: 'UK-ready', label: 'language and workflows that fit local business ops' },
+  { value: 'Launch pricing', label: 'designed to make switching easier' },
+  { value: 'Cleaner oversight', label: 'for managers and leadership' },
+  { value: 'UK-ready', label: 'for real local business operations' },
 ]
 
 const systemColumns = [
@@ -93,15 +93,15 @@ const comparisons = [
 const interfaceHighlights = [
   {
     title: 'Manager visibility',
-    copy: 'See team status, approvals, tasks and workspace readiness without chasing people for updates.',
+    copy: 'See team status, approvals, tasks and workspace readiness without spending the day chasing updates.',
   },
   {
     title: 'Structured actions',
-    copy: 'The product is shaped around the next operational move, so common admin work feels controlled instead of improvised.',
+    copy: 'The product is shaped around the next operational move so common admin work feels controlled, not improvised.',
   },
   {
     title: 'Commercial awareness',
-    copy: 'CRM, billing and reporting stay close to operations, which gives leadership a cleaner commercial picture.',
+    copy: 'CRM, billing and reporting stay close to operations, giving leadership a cleaner commercial picture.',
   },
 ]
 
@@ -111,7 +111,7 @@ const pricingPlans = [
     launch: '£9/mo',
     normal: '£19/mo',
     badge: 'Launch offer',
-    description: 'For smaller teams that need a clean operational core without complexity.',
+    description: 'For smaller teams that want a cleaner internal operating system without adding complexity.',
     features: ['HR essentials', 'CRM foundation', 'documents and policies', 'leave tracking', '14-day free trial'],
   },
   {
@@ -119,7 +119,7 @@ const pricingPlans = [
     launch: '£24/mo',
     normal: '£49/mo',
     badge: 'Most popular',
-    description: 'For growing businesses that want stronger structure, visibility and day-to-day control.',
+    description: 'For growing businesses that need stronger visibility, better manager control and more operational structure.',
     features: ['Everything in Starter', 'staff management', 'timesheets', 'advanced workflows', 'enhanced reporting'],
   },
   {
@@ -127,7 +127,7 @@ const pricingPlans = [
     launch: '£59/mo',
     normal: '£99/mo',
     badge: 'Best for scale',
-    description: 'For businesses that want a more complete operational system with commercial confidence.',
+    description: 'For businesses that want a more complete operating system with stronger reporting and commercial confidence.',
     features: ['Everything in Growth', 'billing visibility', 'deeper reporting', 'priority support', 'admin-level oversight'],
   },
 ]
@@ -275,11 +275,11 @@ function LandingPage() {
             <div className="eyebrow">The operating system for modern business</div>
             <h1>
               Run the business
-              <span className="headline-shift"> with more control.</span>
+              <span className="headline-shift"> without the admin sprawl.</span>
             </h1>
             <p className="hero-body">
-              DH Workplace brings HR, CRM, staff management, documents, policies,
-              leave, timesheets, billing and reporting into one commanding platform.
+              DH Workplace gives growing businesses one place to run HR, CRM,
+              staff management, documents, policies, leave, timesheets, billing and reporting.
             </p>
             <div className="hero-proofline">
               <span>Built for internal company operations</span>
@@ -471,10 +471,10 @@ function LandingPage() {
         <div className="wrap interface-layout">
           <div className="section-header compact">
             <div className="eyebrow">Interface showcase</div>
-            <h2>Software that looks like it can actually run a business.</h2>
+            <h2>Software that looks ready for real operational use.</h2>
             <p>
-              DH Workplace should feel operationally credible at first glance:
-              cleaner structure, clearer controls and less admin noise.
+              Buyers should be able to see the value quickly: cleaner structure,
+              clearer controls and less admin noise from day one.
             </p>
           </div>
           <div className="interface-preview">
@@ -552,10 +552,10 @@ function LandingPage() {
       <section className="section">
         <div className="wrap section-header">
           <div className="eyebrow">Core platform</div>
-          <h2>Built for the real shape of a business.</h2>
+          <h2>Built around the work that actually slows businesses down.</h2>
           <p>
-            The platform is designed to replace fragmentation with one cleaner,
-            sharper layer of operational control.
+            Replace disconnected admin with one cleaner operating layer for your team,
+            your managers and your leadership view.
           </p>
         </div>
         <div className="wrap capability-grid">
@@ -572,10 +572,10 @@ function LandingPage() {
         <div className="wrap architecture-shell">
           <div className="section-header compact">
             <div className="eyebrow">Platform architecture</div>
-            <h2>Three operating layers. One cleaner system.</h2>
+            <h2>Three operating layers. One buying decision.</h2>
             <p>
-              DH Workplace becomes much easier to buy when the structure feels obvious:
-              people, operations and commercial control inside one connected platform.
+              The value becomes obvious when the structure is obvious: people,
+              operations and commercial control inside one connected system.
             </p>
           </div>
           <div className="system-grid">
@@ -609,10 +609,9 @@ function LandingPage() {
         <div className="wrap">
           <div className="section-header compact">
             <div className="eyebrow">Why it wins</div>
-            <h2>Less patchwork. More operating discipline.</h2>
+            <h2>Less patchwork. More control.</h2>
             <p>
-              DH Workplace should feel like a better way to run the company, not
-              just another place to store admin.
+              This is a better way to run the company, not just another place to store admin.
             </p>
           </div>
           <div className="comparison-grid">
@@ -637,11 +636,10 @@ function LandingPage() {
         <div className="wrap trust-grid">
           <div className="trust-copy">
             <div className="eyebrow">Trust by design</div>
-            <h2>Structured like a serious business platform should be.</h2>
+            <h2>Structured to feel safe, credible and commercially serious.</h2>
             <p>
-              DH Workplace is positioned for businesses that want stronger
-              operational discipline, sharper visibility and a cleaner path to
-              scale.
+              DH Workplace is for businesses that want stronger operational discipline,
+              clearer visibility and a more reliable path to scale.
             </p>
             <div className="trust-list">
               {trustSignals.map((item) => (
@@ -673,7 +671,7 @@ function LandingPage() {
         <div className="wrap final-cta-shell">
           <div>
             <div className="eyebrow">Start properly</div>
-            <h2>Install a better operating rhythm across the business.</h2>
+            <h2>Start the trial and see how much cleaner the business can run.</h2>
           </div>
           <div className="cta-stack">
             <a href="https://workplace.dhwebsiteservices.co.uk" className="button primary">
@@ -695,9 +693,9 @@ function PricingPage() {
       <section className="page-hero">
         <div className="wrap">
           <div className="eyebrow">Pricing</div>
-          <h1>Premium pricing, built to convert cleanly.</h1>
+          <h1>Simple pricing for businesses ready to operate properly.</h1>
           <p>
-            Launch offers are live now. Every plan includes a 14-day free trial.
+            Launch pricing is live now. Start on the right plan, try it for 14 days, and upgrade as the business grows.
           </p>
         </div>
       </section>
@@ -716,7 +714,7 @@ function PricingPage() {
                 <span>{plan.normal} normal</span>
               </div>
               <p>{plan.description}</p>
-              <div className="plan-note">14-day free trial included. Clean setup. No heavy onboarding just to evaluate the platform.</div>
+              <div className="plan-note">14-day free trial included. Start quickly, assess fit properly, and upgrade only when you need more.</div>
               <div className="feature-list">
                 {plan.features.map((feature) => (
                   <div key={feature} className="feature-item">
@@ -732,7 +730,7 @@ function PricingPage() {
           ))}
         </div>
         <div className="pricing-footer-note">
-          Need a walkthrough before deciding? Book a demo and we’ll show how DH Workplace fits your actual operating model.
+          Need a walkthrough before deciding? Book a demo and we’ll show exactly where DH Workplace replaces admin drag in your business.
         </div>
       </section>
     </main>
@@ -745,10 +743,9 @@ function FaqPage() {
       <section className="page-hero">
         <div className="wrap">
           <div className="eyebrow">FAQ</div>
-          <h1>Questions, answered with proper clarity.</h1>
+          <h1>Questions answered clearly before you commit.</h1>
           <p>
-            Everything here is designed to make DH Workplace feel straightforward,
-            not vague.
+            Everything here is designed to help you assess fit quickly, without vague product language.
           </p>
         </div>
       </section>
