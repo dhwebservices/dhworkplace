@@ -268,9 +268,9 @@ function LandingPage() {
                     </div>
                   </div>
                   <div className="rail-account">
-                    <span className="rail-avatar">H</span>
+                    <span className="rail-avatar">A</span>
                     <div>
-                      <strong>hooperd216@gmail.com</strong>
+                      <strong>admin@dhworkplace.co.uk</strong>
                       <span>Sign out</span>
                     </div>
                   </div>
