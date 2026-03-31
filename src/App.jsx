@@ -1,7 +1,7 @@
 import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 
-const APP_URL = 'https://workplace.dhwebsiteservices.co.uk'
+const APP_URL = 'https://dhworkplace.co.uk'
 const DEMO_MAILTO = 'mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo'
 
 const productStats = [
@@ -291,7 +291,7 @@ function LandingPage() {
                   <span />
                   <span />
                 </div>
-                <div className="browser-url">workplace.dhwebsiteservices.co.uk</div>
+                <div className="browser-url">dhworkplace.co.uk</div>
                 <div className="browser-tools">
                   <span className="browser-tool" />
                   <span className="browser-tool" />
