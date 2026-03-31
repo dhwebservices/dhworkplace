@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 const SITE_URL = 'https://dhworkplace.co.uk'
 const APP_URL = 'https://app.dhworkplace.co.uk'
 const DEMO_MAILTO = 'mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo'
+const LIVE_DEMO_URL = 'https://app.dhworkplace.co.uk/demo/demo-northstar-creative-4voj?token=ba5043660b74995cffeacd1797a69885a55f'
 const DEFAULT_OG_IMAGE = `${SITE_URL}/dh-workplace-logo.svg`
 
 const productStats = [
@@ -375,6 +376,9 @@ function AppShell() {
             <a href={APP_URL} className="link-action">
               Sign in
             </a>
+            <a href={LIVE_DEMO_URL} className="button secondary" target="_blank" rel="noreferrer">
+              View live demo
+            </a>
             <a href={DEMO_MAILTO} className="button secondary">
               Book a demo
             </a>
@@ -392,6 +396,9 @@ function AppShell() {
           <div className="mobile-panel-actions">
             <a href={APP_URL} className="link-action" onClick={() => setMenuOpen(false)}>
               Sign in
+            </a>
+            <a href={LIVE_DEMO_URL} className="button secondary" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>
+              View live demo
             </a>
             <a href={DEMO_MAILTO} className="button secondary" onClick={() => setMenuOpen(false)}>
               Book a demo
@@ -457,6 +464,9 @@ function LandingPage() {
             <div className="hero-actions hero-sequence hero-sequence-5">
               <a href={APP_URL} className="button primary">
                 Start 14-day trial
+              </a>
+              <a href={LIVE_DEMO_URL} className="button secondary" target="_blank" rel="noreferrer">
+                View live demo
               </a>
               <Link to="/pricing" className="button secondary">See pricing</Link>
             </div>
@@ -645,6 +655,9 @@ function LandingPage() {
           </div>
           <div className="cta-stack">
             <Link to="/pricing" className="button primary">View pricing</Link>
+            <a href={LIVE_DEMO_URL} className="button secondary" target="_blank" rel="noreferrer">
+              View live demo
+            </a>
             <a href={DEMO_MAILTO} className="button secondary">
               Book a demo
             </a>
@@ -699,6 +712,9 @@ function PricingPage() {
               </div>
               <a href={APP_URL} className="button primary wide">
                 Start 14-day trial
+              </a>
+              <a href={LIVE_DEMO_URL} className="button secondary wide" target="_blank" rel="noreferrer">
+                View live demo
               </a>
               <div className="pricing-cta-note">No sales call required to start.</div>
             </article>
@@ -760,6 +776,9 @@ function FaqPage() {
         </div>
         <div className="wrap faq-bottom-cta">
           <Link to="/pricing" className="button primary">View pricing</Link>
+          <a href={LIVE_DEMO_URL} className="button secondary" target="_blank" rel="noreferrer">
+            View live demo
+          </a>
           <a href={DEMO_MAILTO} className="button secondary">
             Book a demo
           </a>
