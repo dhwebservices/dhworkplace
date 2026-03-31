@@ -97,6 +97,13 @@ a {
   letter-spacing: 0.08em;
 }
 
+.brand-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
 .brand-name,
 .footer-brand {
   font-size: 16px;
@@ -937,6 +944,19 @@ a {
   margin: 8px 0 0;
   color: var(--ink-soft);
   font-size: 14px;
+}
+
+.footer-brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex: 0 0 auto;
 }
 
 .footer-meta {

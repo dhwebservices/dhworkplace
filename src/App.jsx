@@ -126,7 +126,7 @@ function AppShell() {
       <header className="site-header">
         <div className="wrap nav-shell">
           <Link to="/" className="brand-lockup">
-            <span className="brand-mark">DH</span>
+            <img className="brand-logo" src="/dh-workplace-logo.svg" alt="DH Workplace" />
             <span className="brand-name">DH Workplace</span>
           </Link>
           <nav className="nav-links">
@@ -138,10 +138,10 @@ function AppShell() {
             <a href="https://app.dhworkplace.co.uk" className="link-action">
               Sign in
             </a>
-            <a href="mailto:hello@dhworkplace.co.uk?subject=DH%20Workplace%20Demo" className="button secondary">
+            <a href="mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo" className="button secondary">
               Book a demo
             </a>
-            <a href="mailto:hello@dhworkplace.co.uk?subject=Start%20DH%20Workplace%20Trial" className="button primary">
+            <a href="mailto:clients@dhwebsiteservices.co.uk?subject=Start%20DH%20Workplace%20Trial" className="button primary">
               Start free trial
             </a>
           </div>
@@ -157,7 +157,10 @@ function AppShell() {
       <footer className="site-footer">
         <div className="wrap footer-grid">
           <div>
-            <div className="footer-brand">DH Workplace</div>
+            <div className="footer-brand-lockup">
+              <img className="footer-logo" src="/dh-workplace-logo.svg" alt="DH Workplace" />
+              <div className="footer-brand">DH Workplace</div>
+            </div>
             <p className="footer-copy">
               A serious operating system for modern businesses.
             </p>
@@ -195,10 +198,10 @@ function LandingPage() {
               leave, timesheets, billing and reporting into one commanding platform.
             </p>
             <div className="hero-actions">
-              <a href="mailto:hello@dhworkplace.co.uk?subject=Start%20DH%20Workplace%20Trial" className="button primary">
+              <a href="mailto:clients@dhwebsiteservices.co.uk?subject=Start%20DH%20Workplace%20Trial" className="button primary">
                 Start free trial
               </a>
-              <a href="mailto:hello@dhworkplace.co.uk?subject=DH%20Workplace%20Demo" className="button secondary">
+              <a href="mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo" className="button secondary">
                 Book a demo
               </a>
             </div>
@@ -429,10 +432,10 @@ function LandingPage() {
             <h2>Install a better operating rhythm across the business.</h2>
           </div>
           <div className="cta-stack">
-            <a href="mailto:hello@dhworkplace.co.uk?subject=Start%20DH%20Workplace%20Trial" className="button primary">
+            <a href="mailto:clients@dhwebsiteservices.co.uk?subject=Start%20DH%20Workplace%20Trial" className="button primary">
               Start free trial
             </a>
-            <a href="mailto:hello@dhworkplace.co.uk?subject=DH%20Workplace%20Demo" className="button secondary">
+            <a href="mailto:clients@dhwebsiteservices.co.uk?subject=DH%20Workplace%20Demo" className="button secondary">
               Book a demo
             </a>
           </div>
@@ -477,7 +480,7 @@ function PricingPage() {
                   </div>
                 ))}
               </div>
-              <a href="mailto:hello@dhworkplace.co.uk?subject=Start%20DH%20Workplace%20Trial" className="button primary wide">
+              <a href="mailto:clients@dhwebsiteservices.co.uk?subject=Start%20DH%20Workplace%20Trial" className="button primary wide">
                 Start free trial
               </a>
             </article>
