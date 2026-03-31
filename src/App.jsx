@@ -220,79 +220,133 @@ function LandingPage() {
                   <span />
                   <span />
                 </div>
-                <div className="topbar-title">DH Workplace</div>
-                <div className="topbar-status">Operational view</div>
+                <div className="topbar-address">workplace.dhwebsiteservices.co.uk</div>
+                <div className="topbar-actions">
+                  <span className="topbar-tab">DH Workplace</span>
+                  <span className="topbar-tab muted">Overview</span>
+                </div>
               </div>
 
               <div className="dashboard-content">
                 <aside className="dashboard-rail">
-                  <div className="rail-logo">DH</div>
-                  <div className="rail-stack">
-                    <span className="rail-item active">Overview</span>
-                    <span className="rail-item">People</span>
-                    <span className="rail-item">CRM</span>
-                    <span className="rail-item">Documents</span>
-                    <span className="rail-item">Reports</span>
+                  <div>
+                    <div className="dashboard-kicker">Workspace</div>
+                    <div className="workspace-title">DH Workplace</div>
+                    <div className="workspace-subtitle">DH Workplace</div>
+                  </div>
+                  <div className="workspace-tags">
+                    <span>Business</span>
+                    <span>Trial</span>
+                  </div>
+                  <div className="rail-group">
+                    <div className="rail-heading">Overview</div>
+                    <div className="rail-stack">
+                      <span className="rail-item active">Dashboard</span>
+                    </div>
+                  </div>
+                  <div className="rail-group">
+                    <div className="rail-heading">HR</div>
+                    <div className="rail-stack">
+                      <span className="rail-item">Staff Directory</span>
+                      <span className="rail-item">Leave</span>
+                      <span className="rail-item">Documents</span>
+                      <span className="rail-item">Policies</span>
+                      <span className="rail-item">Timesheets</span>
+                      <span className="rail-item">Onboarding</span>
+                    </div>
+                  </div>
+                  <div className="rail-group">
+                    <div className="rail-heading">Clients</div>
+                    <div className="rail-stack">
+                      <span className="rail-item">Clients</span>
+                      <span className="rail-item">Tasks</span>
+                      <span className="rail-item">Pipeline</span>
+                      <span className="rail-item">Outreach</span>
+                    </div>
+                  </div>
+                  <div className="rail-account">
+                    <span className="rail-avatar">H</span>
+                    <div>
+                      <strong>hooperd216@gmail.com</strong>
+                      <span>Sign out</span>
+                    </div>
                   </div>
                 </aside>
 
                 <div className="dashboard-main">
-                  <div className="dashboard-hero-card">
+                  <div className="workspace-header">
                     <div>
-                      <div className="panel-kicker">Executive summary</div>
-                      <h2>Everything critical. Nothing buried.</h2>
+                      <h2>Good morning</h2>
+                      <p>Tuesday, 31 March 2026</p>
                     </div>
-                    <div className="mini-metrics">
-                      <div>
-                        <strong>92%</strong>
-                        <span>policy acknowledgement</span>
+                    <div className="workspace-statusbar">
+                      <div className="status-pill">
+                        <span className="status-dot" />
+                        <div>
+                          <b>Workspace status</b>
+                          <span>14 days left in trial</span>
+                        </div>
                       </div>
-                      <div>
-                        <strong>41</strong>
-                        <span>live opportunities</span>
-                      </div>
-                      <div>
-                        <strong>7</strong>
-                        <span>pending approvals</span>
-                      </div>
+                      <span className="status-button">Trial</span>
+                      <span className="status-button ghost">Details</span>
                     </div>
                   </div>
 
-                  <div className="dashboard-panels">
-                    <div className="panel large">
-                      <div className="panel-kicker">Workflow health</div>
-                      <div className="graph-shell">
-                        <div className="graph-line" />
-                        <div className="graph-line second" />
+                  <div className="workspace-stats">
+                    {[
+                      ['1', 'Team members', 'blue'],
+                      ['0', 'Active clients', 'green'],
+                      ['0', 'Open tasks', 'amber'],
+                      ['0', 'Pending leave', 'red'],
+                    ].map(([value, label, tone]) => (
+                      <div key={label} className="workspace-stat">
+                        <strong className={`tone-${tone}`}>{value}</strong>
+                        <span>{label}</span>
                       </div>
-                    </div>
-                    <div className="panel small">
-                      <div className="panel-kicker">Leave requests</div>
-                      <strong>12 awaiting review</strong>
-                      <span>Visible to managers instantly</span>
-                    </div>
-                    <div className="panel small dark">
-                      <div className="panel-kicker">Billing snapshot</div>
-                      <strong>£84,320</strong>
-                      <span>Monthly billed revenue view</span>
-                    </div>
-                    <div className="panel wide">
-                      <div className="panel-kicker">Operational feed</div>
-                      <div className="feed-list">
-                        <div>
-                          <span>Policy update confirmed</span>
-                          <b>HR</b>
+                    ))}
+                  </div>
+
+                  <div className="workspace-panels">
+                    <section className="workspace-panel large">
+                      <h3>Quick actions</h3>
+                      <p>The most common workspace moves</p>
+                      <div className="action-list">
+                        {[
+                          ['Add team member', 'Invite a new person and assign their role'],
+                          ['Add client', 'Create a client account and assign ownership'],
+                          ['Create task', 'Capture operational work and due dates'],
+                          ['Log leave request', 'Submit or review upcoming time away'],
+                        ].map(([title, copy]) => (
+                          <div key={title} className="action-item">
+                            <strong>{title}</strong>
+                            <span>{copy}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </section>
+
+                    <section className="workspace-panel short">
+                      <h3>Workspace summary</h3>
+                      <p>Commercial and operational readiness</p>
+                      <div className="summary-grid">
+                        <div className="summary-item">
+                          <span>Plan</span>
+                          <strong>Business</strong>
                         </div>
-                        <div>
-                          <span>Timesheet variance flagged</span>
-                          <b>Ops</b>
+                        <div className="summary-item">
+                          <span>Readiness</span>
+                          <strong>Trial</strong>
                         </div>
-                        <div>
-                          <span>CRM handoff completed</span>
-                          <b>Sales</b>
+                        <div className="summary-item">
+                          <span>Focus</span>
+                          <strong>Internal operations</strong>
+                        </div>
+                        <div className="summary-item">
+                          <span>Mode</span>
+                          <strong>Admin overview</strong>
                         </div>
                       </div>
-                    </div>
+                    </section>
                   </div>
                 </div>
               </div>
