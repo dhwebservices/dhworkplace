@@ -255,6 +255,9 @@ function App() {
                 <a className="button button-secondary" href={DEMO_URL}>
                   View live demo
                 </a>
+                <a className="button button-ghost" href="#pricing">
+                  See pricing
+                </a>
               </div>
             </div>
 
@@ -425,6 +428,9 @@ function App() {
               </a>
               <a className="button button-secondary" href={DEMO_URL}>
                 View live demo
+              </a>
+              <a className="button button-ghost" href={`${APP_URL}/signin`}>
+                Sign in
               </a>
             </div>
           </div>

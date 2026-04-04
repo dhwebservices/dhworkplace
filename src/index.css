@@ -85,7 +85,7 @@ img {
   top: 0;
   z-index: 30;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(6, 9, 16, 0.9);
+  background: rgba(6, 9, 16, 0.84);
   backdrop-filter: blur(18px);
 }
 
@@ -166,6 +166,17 @@ img {
   border-color: var(--line);
 }
 
+.button-ghost {
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-soft);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.button-ghost:hover {
+  color: var(--text);
+  border-color: var(--line);
+}
+
 .hero-section,
 .system-section,
 .capabilities-section,
@@ -176,7 +187,7 @@ img {
 }
 
 .hero-section {
-  padding: 72px 0 56px;
+  padding: 80px 0 64px;
   overflow: clip;
 }
 
@@ -191,7 +202,7 @@ img {
 .hero-grid {
   grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
   align-items: center;
-  min-height: calc(100vh - 160px);
+  min-height: min(860px, calc(100vh - 144px));
 }
 
 .hero-glow {
@@ -210,9 +221,9 @@ img {
 }
 
 .hero-glow-right {
-  width: 440px;
-  height: 440px;
-  top: 120px;
+  width: 520px;
+  height: 520px;
+  top: 100px;
   right: -120px;
   background: rgba(34, 48, 76, 0.34);
 }
@@ -283,6 +294,7 @@ img {
   overflow: hidden;
   max-width: 740px;
   justify-self: end;
+  position: relative;
 }
 
 .mock-topbar {
@@ -317,6 +329,7 @@ img {
 .mock-body {
   display: grid;
   grid-template-columns: 148px 1fr;
+  min-height: 440px;
 }
 
 .mock-sidebar {
@@ -365,6 +378,9 @@ img {
 
 .mock-main {
   padding: 22px;
+  background:
+    radial-gradient(circle at top right, rgba(63, 124, 255, 0.08), transparent 22%),
+    rgba(255, 255, 255, 0.01);
 }
 
 .mock-main-head,
@@ -515,6 +531,7 @@ img {
 .proof-strip {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.01);
 }
 
 .proof-strip-inner {
@@ -560,6 +577,11 @@ img {
 .pricing-section,
 .faq-section {
   padding: 110px 0;
+}
+
+.capabilities-section,
+.faq-section {
+  background: rgba(255, 255, 255, 0.015);
 }
 
 .system-grid,
@@ -661,6 +683,7 @@ img {
 .pricing-card {
   display: grid;
   gap: 22px;
+  min-height: 100%;
 }
 
 .pricing-card.featured {
@@ -713,6 +736,9 @@ img {
   grid-template-columns: 1fr auto;
   gap: 24px;
   align-items: center;
+  background:
+    radial-gradient(circle at top right, rgba(63, 124, 255, 0.12), transparent 24%),
+    linear-gradient(180deg, rgba(15, 23, 39, 0.96), rgba(10, 17, 31, 0.96));
 }
 
 .site-footer {
@@ -745,6 +771,10 @@ img {
     justify-self: stretch;
   }
 
+  .hero-grid {
+    min-height: auto;
+  }
+
   .proof-links {
     justify-content: flex-start;
   }
@@ -773,8 +803,20 @@ img {
     grid-template-columns: 1fr;
   }
 
+  .hero-section {
+    padding-top: 56px;
+  }
+
+  .hero-copy {
+    order: 1;
+  }
+
+  .hero-mock {
+    order: 2;
+  }
+
   .hero-copy h1 {
-    max-width: 9ch;
+    max-width: 9.5ch;
   }
 
   .mock-body {
@@ -788,6 +830,10 @@ img {
 
   .pricing-card.featured {
     transform: none;
+  }
+
+  .section-heading.centered {
+    margin-bottom: 34px;
   }
 }
 
@@ -804,6 +850,17 @@ img {
     display: none;
   }
 
+  .brand {
+    font-size: 1.2rem;
+    gap: 10px;
+  }
+
+  .brand img,
+  .footer-branding img {
+    width: 18px;
+    height: 18px;
+  }
+
   .button,
   .header-cta {
     min-height: 48px;
@@ -817,12 +874,13 @@ img {
   .pricing-section,
   .faq-section,
   .final-cta {
-    padding-top: 72px;
-    padding-bottom: 72px;
+    padding-top: 64px;
+    padding-bottom: 64px;
   }
 
   .hero-copy h1 {
-    font-size: clamp(2.9rem, 16vw, 4.2rem);
+    font-size: clamp(2.8rem, 16vw, 4rem);
+    max-width: 9ch;
   }
 
   .hero-text,
@@ -841,6 +899,15 @@ img {
     gap: 12px;
   }
 
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+  }
+
   .capability-card,
   .pricing-card,
   .faq-card,
@@ -851,14 +918,88 @@ img {
 
   .mock-main,
   .mock-sidebar {
-    padding: 18px;
+    padding: 16px;
+  }
+
+  .mock-topbar {
+    padding: 14px 16px;
+  }
+
+  .mock-main-head h3 {
+    font-size: 1.35rem;
+  }
+
+  .mock-main-head {
+    align-items: start;
+  }
+
+  .mock-main-head > span {
+    font-size: 0.74rem;
+  }
+
+  .mock-nav button {
+    padding: 10px 12px;
+    font-size: 0.88rem;
+  }
+
+  .metric-grid strong,
+  .system-metric-grid strong,
+  .proof-stats strong,
+  .pricing-amount strong {
+    font-size: 1.6rem;
   }
 
   .final-cta-shell {
     padding: 28px 22px;
   }
 
+  .proof-strip-inner {
+    padding: 20px 0;
+    gap: 20px;
+  }
+
+  .proof-stats {
+    gap: 14px;
+  }
+
+  .proof-links span {
+    font-size: 0.82rem;
+  }
+
   .footer-links {
     flex-wrap: wrap;
+  }
+
+  .footer-inner {
+    padding: 22px 0 28px;
+  }
+}
+
+@media (max-width: 420px) {
+  .wrap {
+    width: min(calc(100% - 22px), var(--wrap));
+  }
+
+  .header-inner {
+    gap: 10px;
+  }
+
+  .header-cta {
+    padding-inline: 14px;
+    font-size: 0.86rem;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.5rem, 15vw, 3.5rem);
+  }
+
+  .capability-card,
+  .pricing-card,
+  .faq-card,
+  .system-card,
+  .final-cta-shell,
+  .mock-main,
+  .mock-sidebar {
+    padding: 18px;
   }
 }
