@@ -438,18 +438,46 @@ function App() {
       </main>
 
       <footer className="site-footer">
-        <div className="wrap footer-inner">
-          <div className="footer-branding">
-            <img src="/dh-workplace-logo.svg" alt="" />
-            <span>DH Workplace</span>
+        <div className="wrap footer-panel">
+          <div className="footer-lead">
+            <div className="footer-branding">
+              <img src="/dh-workplace-logo.svg" alt="" />
+              <div>
+                <strong>DH Workplace</strong>
+                <span>Internal business operations platform</span>
+              </div>
+            </div>
+            <p className="footer-powered">
+              Built and powered by <span>DH Website Services</span>.
+            </p>
           </div>
-          <nav className="footer-links" aria-label="Footer">
-            <a href="#overview">Overview</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#faq">FAQ</a>
-            <a href={`${APP_URL}/signin`}>Sign in</a>
-          </nav>
-          <p className="footer-meta">by DH Website Services</p>
+
+          <div className="footer-columns">
+            <div className="footer-column">
+              <h3>Platform</h3>
+              <a href="#overview">Overview</a>
+              <a href="#pricing">Pricing</a>
+              <a href="#faq">FAQ</a>
+            </div>
+            <div className="footer-column">
+              <h3>Actions</h3>
+              <a href={DEMO_URL}>View live demo</a>
+              <a href={`${APP_URL}/signin`}>Sign in</a>
+              <a href={`${APP_URL}/signup`}>Start free trial</a>
+            </div>
+            <div className="footer-column">
+              <h3>Company</h3>
+              <a href="https://dhwebsiteservices.co.uk" target="_blank" rel="noreferrer">
+                DH Website Services
+              </a>
+              <a href="mailto:clients@dhwebsiteservices.co.uk">clients@dhwebsiteservices.co.uk</a>
+            </div>
+          </div>
+
+          <div className="footer-bottom">
+            <p>DH Workplace by DH Website Services</p>
+            <p>Structured for serious internal operations.</p>
+          </div>
         </div>
       </footer>
     </div>
