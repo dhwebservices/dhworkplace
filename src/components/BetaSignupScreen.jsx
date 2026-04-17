@@ -38,33 +38,72 @@ export default function BetaSignupScreen() {
 
   return (
     <main className="beta-shell">
+      <div className="beta-noise" aria-hidden="true" />
+      <div className="beta-beam beta-beam-left" aria-hidden="true" />
+      <div className="beta-beam beta-beam-right" aria-hidden="true" />
       <div className="beta-orb beta-orb-left" aria-hidden="true" />
       <div className="beta-orb beta-orb-right" aria-hidden="true" />
       <div className="beta-grid" role="presentation">
         <section className="beta-copy">
-          <a className="beta-brand" href="/" aria-label="DH Workplace">
-            <img src="/dh-workplace-logo.svg" alt="" />
-            <span>DH Workplace</span>
-          </a>
+          <div className="beta-topline">
+            <a className="beta-brand" href="/" aria-label="DH Workplace">
+              <img src="/dh-workplace-logo.svg" alt="" />
+              <span>DH Workplace</span>
+            </a>
+            <div className="beta-chip">Private beta</div>
+          </div>
 
-          <p className="beta-kicker">Private beta opening soon</p>
-          <h1>Get ready for something special.</h1>
-          <p className="beta-lead">
-            Be among the first to try DH Workplace. Leave your name and number and we will contact
-            you when the first beta spaces open.
-          </p>
+          <div className="beta-copy-main">
+            <p className="beta-kicker">Opening soon</p>
+            <h1>
+              Something rare
+              <span> is almost here.</span>
+            </h1>
+            <p className="beta-lead">
+              DH Workplace is being opened carefully. Join the first release list and we will reach
+              out before the platform goes public.
+            </p>
 
-          <div className="beta-signal" aria-hidden="true">
-            <div className="beta-signal-ring beta-signal-ring-one" />
-            <div className="beta-signal-ring beta-signal-ring-two" />
-            <div className="beta-signal-core" />
+            <div className="beta-cred">
+              <div className="beta-cred-item">
+                <span className="beta-cred-label">Curated release</span>
+                <strong>Access is being granted in a measured first wave.</strong>
+              </div>
+              <div className="beta-cred-item">
+                <span className="beta-cred-label">Personal follow-up</span>
+                <strong>Every early enquiry is reviewed directly by management.</strong>
+              </div>
+            </div>
+          </div>
+
+          <div className="beta-stage" aria-hidden="true">
+            <div className="beta-stage-line beta-stage-line-top" />
+            <div className="beta-stage-line beta-stage-line-bottom" />
+            <div className="beta-stage-caption beta-stage-caption-top">
+              <span>Invitation only</span>
+              <strong>First intake</strong>
+            </div>
+            <div className="beta-stage-orbit beta-stage-orbit-one" />
+            <div className="beta-stage-orbit beta-stage-orbit-two" />
+            <div className="beta-stage-orbit beta-stage-orbit-three" />
+            <div className="beta-stage-core" />
+            <div className="beta-stage-caption beta-stage-caption-bottom">
+              <span>Management contact</span>
+              <strong>Private release path</strong>
+            </div>
           </div>
         </section>
 
         <section className="beta-panel">
           <div className="beta-panel-head">
             <p>First-release access</p>
-            <span>Join the first beta list</span>
+            <span>Request your place on the first beta list</span>
+            <small>Leave your details and we will contact you as soon as the first intake opens.</small>
+          </div>
+
+          <div className="beta-panel-note">
+            <span>Limited early onboarding</span>
+            <strong>Designed for businesses that want a more considered internal platform.</strong>
           </div>
 
           {status === 'success' ? (
@@ -124,8 +163,12 @@ export default function BetaSignupScreen() {
                 type="submit"
                 disabled={status === 'submitting' || !form.name.trim() || !form.phone.trim()}
               >
-                {status === 'submitting' ? 'Joining beta list...' : 'Be among the first'}
+                {status === 'submitting' ? 'Joining beta list...' : 'Request beta access'}
               </button>
+
+              <p className="beta-footnote">
+                No newsletter blast. No generic mailing list. This is for early access contact only.
+              </p>
             </form>
           )}
         </section>
