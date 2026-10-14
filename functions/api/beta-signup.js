@@ -1,13 +1,12 @@
 const RESEND_API_URL = 'https://api.resend.com/emails'
 const MANAGEMENT_EMAIL = 'mgmt@dhwebsiteservices.co.uk'
+const DEFAULT_FROM = 'DH Workplace <noreply@dhwebsiteservices.co.uk>'
+const TEAM_SIZES = ['1 – 5', '6 – 15', '16 – 30', 'Over 30']
 
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
-    headers: {
-      'Content-Type': 'application/json',
-      'Cache-Control': 'no-store',
-    },
+    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
   })
 }
 
@@ -20,145 +19,87 @@ function escapeHtml(value = '') {
     .replaceAll("'", '&#39;')
 }
 
-function normalizePhone(value = '') {
-  return String(value).replace(/[^\d+()\-\s]/g, '').trim()
-}
+const clean = (value, max = 120) => String(value || '').trim().slice(0, max)
 
-async function insertSignup(env, signup) {
-  const supabaseUrl = env.SUPABASE_URL
-  const supabaseServiceRoleKey = env.SUPABASE_SERVICE_ROLE_KEY
-
-  if (!supabaseUrl || !supabaseServiceRoleKey) {
-    throw new Error('Supabase storage is not configured.')
-  }
-
-  const response = await fetch(`${supabaseUrl}/rest/v1/beta_signups`, {
-    method: 'POST',
-    headers: {
-      apikey: supabaseServiceRoleKey,
-      Authorization: `Bearer ${supabaseServiceRoleKey}`,
-      'Content-Type': 'application/json',
-      Prefer: 'return=representation',
-    },
-    body: JSON.stringify([signup]),
-  })
-
-  const text = await response.text()
-  const data = text ? JSON.parse(text) : null
-
-  if (!response.ok) {
-    throw new Error(data?.message || data?.error || 'Supabase insert failed.')
-  }
-
-  return Array.isArray(data) ? data[0] : data
-}
-
-async function sendManagementEmail(env, signup) {
-  const resendApiKey = env.RESEND_API_KEY
-  const fromEmail =
-    env.BETA_SIGNUP_FROM_EMAIL ||
-    env.RESEND_FROM_EMAIL ||
-    'DH Workplace <beta@dhworkplace.co.uk>'
-
-  if (!resendApiKey) {
-    throw new Error('Resend is not configured.')
-  }
-
-  const submittedAt = new Date(signup.created_at).toLocaleString('en-GB', {
-    dateStyle: 'full',
-    timeStyle: 'medium',
-    timeZone: 'Europe/London',
-  })
-
-  const html = `
-    <div style="margin:0;padding:32px 16px;background:#eef4fb;font-family:Arial,sans-serif;color:#10233e">
-      <div style="max-width:620px;margin:0 auto;background:#ffffff;border:1px solid #d7e2f0;border-radius:18px;overflow:hidden">
-        <div style="padding:24px 28px;background:linear-gradient(135deg,#62b0ff 0%,#1954b8 100%);color:#ffffff">
-          <div style="font-size:12px;letter-spacing:0.06em;text-transform:uppercase;opacity:0.86">DH Workplace beta signup</div>
-          <div style="margin-top:10px;font-size:28px;line-height:1.1;font-weight:700">New beta enquiry received</div>
-        </div>
-        <div style="padding:24px 28px">
-          <table style="width:100%;border-collapse:collapse">
-            <tr>
-              <td style="padding:12px 0;border-bottom:1px solid #e7edf5;font-size:12px;font-weight:700;text-transform:uppercase;color:#60738d">Name</td>
-              <td style="padding:12px 0;border-bottom:1px solid #e7edf5;font-size:14px;color:#10233e">${escapeHtml(signup.name)}</td>
-            </tr>
-            <tr>
-              <td style="padding:12px 0;border-bottom:1px solid #e7edf5;font-size:12px;font-weight:700;text-transform:uppercase;color:#60738d">Phone</td>
-              <td style="padding:12px 0;border-bottom:1px solid #e7edf5;font-size:14px;color:#10233e">${escapeHtml(signup.phone)}</td>
-            </tr>
-            <tr>
-              <td style="padding:12px 0;border-bottom:1px solid #e7edf5;font-size:12px;font-weight:700;text-transform:uppercase;color:#60738d">Source</td>
-              <td style="padding:12px 0;border-bottom:1px solid #e7edf5;font-size:14px;color:#10233e">${escapeHtml(signup.source)}</td>
-            </tr>
-            <tr>
-              <td style="padding:12px 0;border-bottom:1px solid #e7edf5;font-size:12px;font-weight:700;text-transform:uppercase;color:#60738d">Submitted</td>
-              <td style="padding:12px 0;border-bottom:1px solid #e7edf5;font-size:14px;color:#10233e">${escapeHtml(submittedAt)}</td>
-            </tr>
-            <tr>
-              <td style="padding:12px 0;font-size:12px;font-weight:700;text-transform:uppercase;color:#60738d">IP</td>
-              <td style="padding:12px 0;font-size:14px;color:#10233e">${escapeHtml(signup.ip_address)}</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div>
-  `
+async function sendEmail(env, message) {
+  if (!env.RESEND_API_KEY) throw new Error('Email is not configured.')
 
   const response = await fetch(RESEND_API_URL, {
     method: 'POST',
-    headers: {
-      Authorization: `Bearer ${resendApiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: fromEmail,
-      to: [MANAGEMENT_EMAIL],
-      subject: `New DH Workplace beta signup - ${signup.name}`,
-      html,
-      reply_to: MANAGEMENT_EMAIL,
-    }),
+    headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ from: env.SIGNUP_FROM_EMAIL || DEFAULT_FROM, ...message }),
   })
 
-  const text = await response.text()
-  if (!response.ok) {
-    throw new Error(text || 'Email delivery failed.')
-  }
+  if (!response.ok) throw new Error((await response.text()) || 'Email delivery failed.')
+}
+
+// Plain, Apple-style emails: one column, system font, no gradients
+function shell(body) {
+  return `<div style="background:#f5f5f7;padding:32px 16px;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#1d1d1f">
+  <div style="max-width:560px;margin:0 auto;background:#fff;border-radius:16px;padding:32px">${body}</div>
+  <p style="max-width:560px;margin:16px auto 0;font-size:12px;line-height:1.5;color:#86868b;text-align:center">DH Workplace is made by DH Website Services, a trading name of David Hooper Home Limited, registered in England and Wales, company number 17018784. 36b Coedpenmaen Road, Trallwn, Pontypridd CF37 4LP.</p>
+</div>`
+}
+
+function confirmationEmail(signup) {
+  return shell(`<p style="margin:0;font-size:15px;color:#6e6e73">DH Workplace</p>
+  <h1 style="margin:6px 0 0;font-size:26px;letter-spacing:-0.02em">You're on the list, ${escapeHtml(signup.name.split(' ')[0])}.</h1>
+  <p style="margin:16px 0 0;font-size:16px;line-height:1.55">Thanks for signing ${escapeHtml(signup.business)} up for early access. We're building DH Workplace now: rotas, clock-in and time off for teams like yours.</p>
+  <p style="margin:12px 0 0;font-size:16px;line-height:1.55">When your place opens, we'll get in touch and help you get set up, including your staff and your first rota.</p>
+  <p style="margin:12px 0 0;font-size:16px;line-height:1.55">Any questions in the meantime, just call us on 01443 805303.</p>
+  <p style="margin:24px 0 0;font-size:16px">David Hooper<br><span style="color:#6e6e73">DH Website Services</span></p>`)
+}
+
+function managementEmail(signup) {
+  const rows = [
+    ['Name', signup.name],
+    ['Business', signup.business],
+    ['Email', signup.email],
+    ['Phone', signup.phone || 'Not given'],
+    ['Team size', signup.teamSize || 'Not given'],
+    ['Submitted', new Date().toLocaleString('en-GB', { dateStyle: 'full', timeStyle: 'short', timeZone: 'Europe/London' })],
+  ]
+  return shell(`<h1 style="margin:0;font-size:22px;letter-spacing:-0.02em">New early access sign-up</h1>
+  <table style="width:100%;margin-top:18px;border-collapse:collapse;font-size:15px">${rows
+    .map(([key, value]) => `<tr><td style="padding:10px 0;border-top:1px solid #e5e5ea;color:#6e6e73;width:120px">${key}</td><td style="padding:10px 0;border-top:1px solid #e5e5ea">${escapeHtml(value)}</td></tr>`)
+    .join('')}</table>`)
 }
 
 export async function onRequestPost(context) {
   let payload
-
   try {
     payload = await context.request.json()
   } catch {
-    return json({ error: 'Invalid request body.' }, 400)
-  }
-
-  const name = String(payload?.name || '').trim()
-  const phone = normalizePhone(payload?.phone)
-
-  if (!name || !phone) {
-    return json({ error: 'Name and phone number are required.' }, 400)
+    return json({ error: 'Invalid request.' }, 400)
   }
 
   const signup = {
-    name,
-    phone,
-    source: 'DH Workplace beta landing page',
-    ip_address:
-      context.request.headers.get('CF-Connecting-IP') ||
-      context.request.headers.get('x-forwarded-for') ||
-      'Unavailable',
-    user_agent: context.request.headers.get('user-agent') || 'Unavailable',
-    created_at: new Date().toISOString(),
+    name: clean(payload?.name),
+    business: clean(payload?.business),
+    email: clean(payload?.email, 200).toLowerCase(),
+    phone: clean(payload?.phone, 40).replace(/[^\d+()\-\s]/g, ''),
+    teamSize: TEAM_SIZES.includes(payload?.teamSize) ? payload.teamSize : '',
+  }
+
+  if (!signup.name || !signup.business || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signup.email)) {
+    return json({ error: 'Please add your name, business name and a valid email.' }, 400)
   }
 
   try {
-    const storedSignup = await insertSignup(context.env, signup)
-    await sendManagementEmail(context.env, storedSignup)
+    await sendEmail(context.env, {
+      to: [MANAGEMENT_EMAIL],
+      reply_to: signup.email,
+      subject: `Early access: ${signup.business} (${signup.teamSize || 'size not given'})`,
+      html: managementEmail(signup),
+    })
+    await sendEmail(context.env, {
+      to: [signup.email],
+      reply_to: MANAGEMENT_EMAIL,
+      subject: "You're on the DH Workplace early access list",
+      html: confirmationEmail(signup),
+    })
     return json({ success: true })
   } catch (error) {
-    return json({ error: error.message || 'Submission failed.' }, 500)
+    return json({ error: 'We could not send your details just now. Please try again, or call 01443 805303.' }, 500)
   }
 }

@@ -1,5 +1,5 @@
-import BetaSignupScreen from './components/BetaSignupScreen'
+import EarlyAccess from './components/EarlyAccess'
 
 export default function App() {
-  return <BetaSignupScreen />
+  return <EarlyAccess />
 }
